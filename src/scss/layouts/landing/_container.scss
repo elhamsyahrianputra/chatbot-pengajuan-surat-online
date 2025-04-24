@@ -1,0 +1,15 @@
+@use '../../utilities/breakpoints' as *;
+@use 'sass:map';
+@use 'sass:string';
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+
+  @each $name, $width in $breakpoints {
+    @include media-query($name) {
+      max-width: $width;
+
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@use '../utilities/admin/colors' as *;
+
+.simplebar-scrollbar::before {
+    background-color: $neutral-500 !important;
+}

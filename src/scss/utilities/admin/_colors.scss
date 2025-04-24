@@ -1,0 +1,67 @@
+// Red
+$red-lighter: #ffe9d4;
+$red-light: #ffac82;
+$red: #ff562f;
+$red-dark: #b61d18;
+$red-darker: #790915;
+
+// Orange
+$orange-lighter: #fef5cc;
+$orange-light: #ffd565;
+$orange: #ffab00;
+$orange-dark: #b66e00;
+$orange-darker: #7b4101;
+
+// Yellow
+$yellow-lighter: #fff9d1;
+$yellow-light: #ffe873;
+$yellow: #ffd600;
+$yellow-dark: #b89d00;
+$yellow-darker: #7f6b00;
+
+// Green
+$green-lighter: #d2fdd2;
+$green-light: #77ed8c;
+$green: #23c55e;
+$green-dark: #118d57;
+$green-darker: #065e48;
+
+// Blue
+$blue-lighter: #cde9fd;
+$blue-light: #6bb1f8;
+$blue: #0c68e9;
+$blue-dark: #063ba7;
+$blue-darker: #021d6f;
+
+// Purple
+$purple-lighter: #efd6fe;
+$purple-light: #c684ff;
+$purple: #8e32ff;
+$purple-dark: #5119b8;
+$purple-darker: #270979;
+
+// Netral
+$neutral-100: #f9fafc;
+$neutral-200: #edeff2;
+$neutral-300: #dfe2e7;
+$neutral-400: #c4cdd6;
+$neutral-500: #919eab;
+$neutral-600: #637382;
+$neutral-700: #454f5b;
+$neutral-800: #1c252e;
+$neutral-900: #131a22;
+
+// White
+$white: #fff;
+$black: #000;
+
+$primaryColor: (
+    "red": $red,
+    "orange": $orange,
+    "yellow": $yellow,
+    "green": $green,
+    "blue": $blue,
+    "purple": $purple,
+    "black": $black,
+    "grey": $neutral-200,
+);

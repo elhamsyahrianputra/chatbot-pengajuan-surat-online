@@ -1,0 +1,90 @@
+@use "../../utilities/landing/colors" as *;
+
+.chatbot-none {
+    display: none !important;
+}
+
+.chatbot {
+    position: fixed;
+    z-index: 10;
+    bottom: 1rem;
+    right: 2rem;
+
+    .chatbot-icon {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: inline-flex;
+        cursor: pointer;
+        background: rgba($color: $blue-light, $alpha: 0.4);
+        padding: 4px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+    .chatbot-chat {
+        background: $white;
+        width: 300px;
+        height: 440px;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+        box-shadow: 0px 0px 10px 2px rgba($color: $black, $alpha: 0.2);
+
+        .chat-title {
+            background-color: $blue;
+            border-top-right-radius: 1rem;
+            border-top-left-radius: 1rem;
+            padding: 1rem;
+            color: $white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .close-button {
+                color: $white;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                font-size: 1.25rem;
+                line-height: 1rem;
+
+                &:hover {
+                    color: $black;
+                    background-color: $grey;
+                }
+            }
+        }
+
+        .chat-main {
+            font-size: 14px;
+
+            .chat-bot {
+                border-radius: 6px;
+                background-color: $grey-dark;
+                margin-right: 4rem;
+                margin-top: 1rem;
+                margin-left: 1rem;
+                padding: 6px 12px;
+            }
+
+            .chat-user {
+                color: $grey;
+                border-radius: 6px;
+                background-color: $blue-light;
+                margin-right: 1rem;
+                margin-top: 1rem;
+                margin-left: 4rem;
+                padding: 6px 12px;
+            }
+        }
+    }
+}

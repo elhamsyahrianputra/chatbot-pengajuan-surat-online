@@ -1,0 +1,20 @@
+// Vendors
+@use './vendor/normalize';
+// @use './vendor/simplebar.scss';
+
+// Base
+@use './base/base';
+@use './base/reset';
+
+// Components
+@use './components/landing/chatbot';
+
+// Layouts
+@use './layouts/landing/container';
+@use './layouts/landing/navbar';
+@use './layouts/landing/footer';
+
+// Pages
+@use './pages/landing/home';
+@use './pages/landing/pengajuan-surat-online';
+@use './pages//landing/jenis-surat';

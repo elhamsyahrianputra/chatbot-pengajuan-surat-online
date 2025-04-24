@@ -1,0 +1,64 @@
+@use "../../utilities/admin/colors" as *;
+
+.button {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.71429;
+    min-width: 64px;
+    padding: 6px 12px;
+    border-width: 0px;
+    border-radius: 8px;
+    transition:
+        background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.button-red {
+        color: $white;
+        background-color: $red;
+    }
+
+    &.button-orange {
+        color: $white;
+        background-color: $orange;
+    }
+
+    &.button-yellow {
+        color: $white;
+        background-color: $yellow;
+    }
+    
+    &.button-green {
+        color: $white;
+        background-color: $green;
+    }
+
+    &.button-blue {
+        color: $white;
+        background-color: $blue;
+    }
+    
+    &.button-purple {
+        color: $white;
+        background-color: $purple;
+    }
+
+    &.button-black {
+        color: $white;
+        background-color: $black;
+    }
+
+    &.button-grey {
+        color: $neutral-600;
+        background-color: $neutral-200;
+    }
+
+    &:hover {
+        filter: opacity(60%);
+    }
+}

@@ -1,0 +1,32 @@
+@use '../../utilities/admin/colors' as *;
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .profile-avatar {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background: $neutral-600;
+        padding: 3px;
+        overflow: hidden;
+        
+        & > img {
+            transform: translateY(5px);
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .profile-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .profile-email {
+            color: $neutral-500;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@use '../../utilities/admin/colors' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 1px 2px 0px rgba($color: $neutral-400, $alpha: 0.2);
+
+  .navbar-nav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    
+    button {
+      display: flex;
+      align-items: center;
+      
+      img {
+        height: 24px;
+        width: 24px;
+      }
+    }
+
+    .nav-profile {
+      display: flex;
+      height: 42px;
+      width: 42px;
+      justify-content: center;
+      position: relative;
+      align-items: center;
+
+      .profile-avatar {
+        border: 3px solid $white;
+        object-fit: cover;
+        padding: 4px;
+        object-position: center;
+        width: calc(100% - 2px);
+        height: calc(100% - 2px);
+        z-index: 2;
+        position: relative;
+        border-radius: 50%;
+        background: $white;
+      }
+
+      .ring {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        background: linear-gradient($neutral-300 40%, $blue);
+        display: block;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        animation: rotate 6s infinite linear;
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,151 @@
+@use "../../utilities/landing/colors" as *;
+
+.footer {
+  .footer-seperator {
+  }
+
+  .footer-wrapper {
+    margin-top: -5px;
+    background-color: $primary;
+    padding-bottom: 2rem;
+
+    .footer-main {
+      display: flex;
+      color: $white;
+      gap: 60px;
+
+      .footer-contact {
+        flex: 1;
+        .contact-title {
+          margin-bottom: 2rem;
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .contact-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+
+          .contact-item {
+            display: flex;
+            gap: 10px;
+          }
+        }
+      }
+
+      .footer-news {
+        flex: 2;
+        .news-title {
+          margin-bottom: 2rem;
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .news-list {
+          margin-top: -8px;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+
+          .news-item {
+            border-bottom: 1px solid $white;
+            padding-bottom: 0.75rem;
+
+            .news-link {
+              display: flex;
+              color: $yellow;
+              line-height: 2rem;
+              gap: 0.5rem;
+
+              &:hover {
+                color: $blue;
+              }
+
+              & > svg {
+                display: block;
+                margin-top: 0.65rem;
+              }
+
+              & > span {
+                display: inline-block;
+              }
+            }
+          }
+        }
+      }
+
+      .footer-academic {
+        flex: 1;
+        width: 100%;
+
+        .academic-title {
+          margin-bottom: 2rem;
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .academic-list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .academic-item {
+            width: 100%;
+
+            .academic-link {
+              border-radius: 3px;
+              display: flex;
+              color: $primary;
+              background-color: $blue;
+              box-shadow: inset 0 1px 0 #fff, 0 0.15em 0 $primary,
+                0.1em 0.2em 0.2em 0.15em rgba(0, 0, 0, 0.3);
+
+              &:hover {
+                color: $white;
+                background-color: $primary;
+              }
+
+              & > .link-icon {
+                display: block;
+                border-right: 1px solid $primary;
+                padding: 14px;
+              }
+
+              & > .link-text {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-copyright {
+    border-top: 1px solid $white;
+    background: $primary;
+
+    .copyright-wrapper {
+      color: $white;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 48px;
+      padding-bottom: 48px;
+
+      .copyright-content {
+      }
+
+      .copyright-socmed {
+        .socmed-list {
+          display: flex;
+          gap: 1rem;
+          .socmed-item {
+          }
+        }
+      }
+    }
+  }
+}

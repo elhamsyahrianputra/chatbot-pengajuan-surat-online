@@ -1,0 +1,110 @@
+@use "../../utilities/landing/colors" as *;
+
+#home {
+  .jumbotron {
+    background-image: url("/img/rektorat-universitas-sebelas-maret.jpg");
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    flex-direction: column;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .jumbotron-content {
+      margin-top: auto;
+      color: $white;
+      text-align: center;
+
+      .jumbotron-title {
+        font-size: 72px;
+        text-shadow: 2px 2px 6px #000000;
+      }
+
+      .jumbotron-subtitle {
+        font-size: 30px;
+        text-shadow: 2px 2px 6px #000000;
+      }
+    }
+  }
+
+  #online-service {
+    padding-top: 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid $black;
+    .online-service-header {
+      font-size: 40px;
+      text-align: center;
+      margin-bottom: 72px;
+
+      .online-service-title {
+        color: $black;
+        font-weight: 400;
+      }
+
+      .online-service-subtitle {
+        color: $orange;
+        font-weight: 400;
+      }
+    }
+
+    .online-service-list {
+      padding-left: 6rem;
+      padding-right: 6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      .online-service-item {
+        padding-bottom: 30px;
+        border-bottom: 1px dashed $grey-dark;
+
+        .online-service-link {
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
+          gap: 48px;
+
+          .online-service-icon {
+            border-radius: 24px;
+            padding: 20px;
+            color: $orange;
+            height: 84px;
+            width: 84px;
+            text-align: center;
+            font-size: 42px;
+            background-color: $grey;
+          }
+
+          .online-service-content {
+            width: 100%;
+            .online-service-content-title {
+              font-weight: 500;
+              font-size: 20px;
+            }
+            .online-service-content-text {
+              margin-top: 1rem;
+              font-size: 18px;
+              line-height: 30px;
+              font-weight: 300;
+              width: 80%;
+            }
+          }
+
+          .online-service-go-to {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 24px;
+            padding: 20px;
+            color: $white;
+            height: 84px;
+            width: 90px;
+            font-size: 32px;
+            background-color: $orange;
+          }
+        }
+      }
+    }
+  }
+}

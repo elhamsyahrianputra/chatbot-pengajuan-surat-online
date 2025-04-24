@@ -1,0 +1,49 @@
+@use "../../utilities/admin/colors" as *;
+
+.breadcrumbs-title {
+    margin-top: 1rem;
+    font-size: 24px;
+}
+
+.breadcrumbs {
+    margin-top: 1.5rem;
+    font-size: 14px;
+    
+    .breadcrumbs-list {
+        display: flex;
+        gap: 1rem;
+
+        .breadcrumbs-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            &:first-child {
+                &::before {
+                    display: none;
+                }
+            }
+
+            &:before {
+                content: "";
+                height: 4px;
+                width: 4px;
+                background-color: $neutral-500;
+                display: block;
+                border-radius: 50%;
+            }
+
+            .breadcrumbs-link {
+                &:hover {
+                    text-decoration: underline;
+                }
+                
+                &.active {
+                    text-decoration: none;
+                    color: $neutral-500;
+                }
+
+            }
+        }
+    }
+}

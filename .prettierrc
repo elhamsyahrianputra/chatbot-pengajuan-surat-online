@@ -1,0 +1,7 @@
+{
+    "plugins": ["prettier-plugin-organize-attributes"],
+    "tabWidth": 4,
+    "singleAttributePerLine": false,
+    "useTabs": false,
+    "printWidth": 200
+}
