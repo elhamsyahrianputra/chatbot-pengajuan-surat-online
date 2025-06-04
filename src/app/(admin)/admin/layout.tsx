@@ -10,7 +10,7 @@ export default function RootLayout({
 }>) {
     return (
         <html>
-            <body className={`${publicSans.className}`}>
+            <body className={`${publicSans.className}`} style={{ overflowX: 'hidden' }}>
                 <Sidebar />
                 <div className="root-wrapper">
                     <Navbar />

@@ -7,6 +7,7 @@ export interface LetterRequirement {
 }
 
 export interface StoreLetterRequirementRequest {
+    letter_type_id: string;
     name: string;
     description: string;
 }

@@ -27,6 +27,7 @@ $green-dark: #118d57;
 $green-darker: #065e48;
 
 // Blue
+$blue-lighten: hsl(205, 100%, 95%);
 $blue-lighter: #cde9fd;
 $blue-light: #6bb1f8;
 $blue: #0c68e9;
@@ -63,5 +64,6 @@ $primaryColor: (
     "blue": $blue,
     "purple": $purple,
     "black": $black,
+    "slate": $neutral-600,
     "grey": $neutral-200,
 );

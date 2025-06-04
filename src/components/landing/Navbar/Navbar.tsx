@@ -4,6 +4,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import NavbarItem from "./NavbarItem"
 import MenuItem from "./MenuItem";
 import NavbarMenu from "./NavbarMenu";
+import LoginAction from "./LoginAction";
 
 export default function Navbar() {
   return (
@@ -43,7 +44,7 @@ export default function Navbar() {
                 </NavbarMenu>
               </NavbarItem>
 
-              <NavbarItem title="Program Studi" href="/program-studi"/>
+              {/* <NavbarItem title="Program Studi" href="/program-studi"/> */}
 
               <NavbarItem title="Alur">
                 <NavbarMenu>
@@ -51,7 +52,7 @@ export default function Navbar() {
                 </NavbarMenu>
               </NavbarItem>
 
-              <NavbarItem title="Download">
+              {/* <NavbarItem title="Download">
                 <NavbarMenu>
                   <MenuItem title="SK Mengajar" href="/sk-mengajar" />
                   <MenuItem title="Akreditasi" href="/akreditasi" />
@@ -77,7 +78,9 @@ export default function Navbar() {
                   <MenuItem title="Lacak Perpanjangan, Penundaan, Cuti" href="/lacak-perpanjangan-penundaan-cuti" />
                   <MenuItem title="Lacak Defer Studi Pascasarjana" href="/lacak-defer-studi-pascasarjana" />
                 </NavbarMenu>
-              </NavbarItem>
+              </NavbarItem> */}
+
+              <LoginAction />
             </ul>
           </nav>
         </div>

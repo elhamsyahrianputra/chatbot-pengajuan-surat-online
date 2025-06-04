@@ -1,8 +1,10 @@
 @use "../../../utilities/admin/colors" as *;
 
 .form-floating {
+    margin-top: 12px;
     position: relative;
     display: flex;
+    width: 100%;
     flex-direction: column;
 
     & > .form-input {
@@ -39,7 +41,7 @@
 
     & > .form-input:focus {
         border-color: $black;
-        
+
         & + .form-label {
             color: $black;
             font-size: 14px;
@@ -56,12 +58,23 @@
     }
 
     & > .form-input:disabled {
-        color: $neutral-700;
-        border-color: $neutral-700;
+        cursor: not-allowed;
+        color: $neutral-400;
+        border-color: $neutral-500;
         background-color: $white;
-        
+
         & + .form-label {
-            color: $neutral-700;
+            color: $neutral-500;
+        }
+    }
+
+    &.fixed {
+        & > .form-input:placeholder-shown {
+            position: relative;
+            & + .form-label {
+                font-size: 14px;
+                transform: translateY(-50%);
+            }
         }
     }
 }

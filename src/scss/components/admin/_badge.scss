@@ -12,42 +12,42 @@
     font-size: 12px;
 
     &.badge-red {
-        color: $red;
+        color: $red !important;
         background-color: rgba($color: $red, $alpha: 0.16);
     }
 
     &.badge-yellow {
-        color: $yellow;
+        color: $yellow !important;
         background-color: rgba($color: $yellow, $alpha: 0.16);
     }
 
     &.badge-orange {
-        color: $orange;
+        color: $orange !important;
         background-color: rgba($color: $orange, $alpha: 0.16);
     }
 
     &.badge-green {
-        color: $green;
+        color: $green !important;
         background-color: rgba($color: $green, $alpha: 0.16);
     }
 
     &.badge-blue {
-        color: $blue;
+        color: $blue !important;
         background-color: rgba($color: $blue, $alpha: 0.16);
     }
 
     &.badge-purple {
-        color: $purple;
+        color: $purple !important;
         background-color: rgba($color: $purple, $alpha: 0.16);
     }
 
     &.badge-black {
-        color: $neutral-100;
+        color: $neutral-100 !important;
         background-color: $neutral-900;
     }
 
     &.badge-grey {
-        color: $neutral-600;
+        color: $neutral-600 !important;
         background-color: $neutral-200;
     }
 }

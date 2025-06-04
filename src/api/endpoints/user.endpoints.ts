@@ -1,7 +1,7 @@
 export const USER_ENDPOINTS = {
-    INDEX: '/users',
-    STORE: '/users',
-    SHOW: (id: string) => `/users/${id}`,
-    UPDATE: (id: string) => `/users/${id}`,
-    DELETE: (id: string) => `/users/${id}`,
+    INDEX: 'api/users',
+    STORE: 'api/users',
+    SHOW: (id: string) => `api/users/${id}`,
+    UPDATE: (id: string) => `api/users/${id}`,
+    DELETE: (id: string) => `api/users/${id}`,
 }

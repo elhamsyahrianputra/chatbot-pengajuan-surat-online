@@ -9,10 +9,10 @@ interface ActionItemProps {
 export default function ActionItem({ icon, onSubmit, children }: ActionItemProps) {
     return (
         <li className="popup-item">
-            <form className="popup-form" method="post" onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="popup-form">
                 <button type="submit">
                     <Icon icon={icon} />
-                    <span>{children}</span>
+                    {children}
                 </button>
             </form>
         </li>

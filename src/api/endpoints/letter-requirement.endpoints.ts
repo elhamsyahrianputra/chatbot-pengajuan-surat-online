@@ -1,7 +1,7 @@
 export const LETTER_REQUIREMENT_ENDPOINTS = {
-    INDEX: "/letter-requirements",
-    STORE: "/letter-requirements",
-    SHOW: (id: string) => `/letter-requirements/${id}`,
-    UPDATE: (id: string) => `/letter-requirements/${id}`,
-    DELETE: (id: string) => `/letter-requirements/${id}`,
+    INDEX: "api/letter-requirements",
+    STORE: "api/letter-requirements",
+    SHOW: (id: string) => `api/letter-requirements/${id}`,
+    UPDATE: (id: string) => `api/letter-requirements/${id}`,
+    DELETE: (id: string) => `/api/letter-requirements/${id}`,
 };

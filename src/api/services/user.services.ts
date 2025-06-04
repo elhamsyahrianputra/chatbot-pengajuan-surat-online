@@ -1,5 +1,5 @@
 // src/api/services/letter-type.service.ts
-import apiClient from "../client";
+import {apiClient} from "../api";
 import { USER_ENDPOINTS } from "../endpoints/user.endpoints";
 import type {
     User

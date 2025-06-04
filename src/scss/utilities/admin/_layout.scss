@@ -9,6 +9,32 @@
 
 @for $i from 1 through 12 {
     .col-#{$i} {
-        flex: 0 0 ($i / 12 * 100%);
+        flex: 0 0 calc($i / 12 * 100%);
     }
+}
+
+@for $i from 1 through 12 {
+    .gap-#{$i} {
+        gap: calc($i / 4 * 16px);
+    }
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-end {
+    justify-content: end;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-items-end {
+    align-items: end;
 }

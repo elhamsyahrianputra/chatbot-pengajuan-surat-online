@@ -1,0 +1,48 @@
+@use "../../utilities/admin/colors" as *;
+
+.applicant-data {
+    font-size: 14px;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .applicant-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        & > h4 {
+            color: $neutral-600;
+            font-weight: 400;
+        }
+
+        & > span {
+            color: $neutral-800;
+            font-weight: 600;
+        }
+    }
+}
+.submission-data {
+    font-size: 14px;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .submission-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        align-items: flex-start;
+
+        & > h4 {
+            color: $neutral-600;
+            font-weight: 400;
+        }
+        & > span {
+            color: $neutral-800;
+            font-weight: 600;
+        }
+    }
+}

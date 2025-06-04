@@ -7,17 +7,17 @@ export interface LetterSubmission {
     user?: User;
     letter_type_id: string;
     letter_type?: LetterType;
-    status:
-        | "submitted"
-        | "approved"
-        | "revision"
-        | "rejected"
-        | "completed"
-        | "canceled";
-    created_at: Date;
-    updated_at: Date;
+    code: string;
+    file_path?: string;
+    status: "submitted" | "approved" | "revision" | "rejected" | "completed" | "canceled";
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export type GetLetterSubmissionParams = {
     include?: string | string[];
+};
+
+export type UpdateLetterSubmissionRequest = {
+    status?: string;
 };

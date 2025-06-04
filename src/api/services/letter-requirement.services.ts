@@ -1,5 +1,5 @@
 // src/api/services/letter-requirement.service.ts
-import apiClient from "../client";
+import {apiClient} from "../api";
 import { LETTER_REQUIREMENT_ENDPOINTS } from "../endpoints/letter-requirement.endpoints";
 import { LetterRequirement, StoreLetterRequirementRequest, UpdateLetterRequirementRequest } from "../types/letter-requirement.types";
 
@@ -30,7 +30,7 @@ export const letterRequirementService = {
      */
     async create(data: StoreLetterRequirementRequest): Promise<LetterRequirement> {
         const response = await apiClient.post(LETTER_REQUIREMENT_ENDPOINTS.STORE, data);
-        return response.data;
+        return response.data.data;
     },
 
     /**
@@ -50,6 +50,7 @@ export const letterRequirementService = {
      * @returns Success status
      */
     async delete(id: string): Promise<{ message: string }> {
+        apiClient
         const response = await apiClient.delete(LETTER_REQUIREMENT_ENDPOINTS.DELETE(id));
         return response.data;
     },

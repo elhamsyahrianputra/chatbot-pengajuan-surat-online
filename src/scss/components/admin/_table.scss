@@ -19,17 +19,15 @@
             padding: 0.5rem 0;
 
             .tab-button {
+                position: relative;
                 color: $neutral-700;
                 cursor: pointer;
-                padding: 0.5rem 1.25rem;
+                margin: 0 1.25rem;
+                padding: 0.5rem 0;
                 text-transform: capitalize;
                 gap: 0.5rem;
                 display: flex;
                 align-items: center;
-
-                &:hover {
-                    background-color: $neutral-200;
-                }
 
                 &.active {
                     position: relative;

@@ -12,8 +12,6 @@ import { letterTypeService } from "@/api";
 export default async function Page() {
   const letterTypes = await letterTypeService.getAll({include: 'requirements'});
 
-  console.log(letterTypes);
-
   return (
     <main id="pengajuan-surat-online">
       <div className="container">

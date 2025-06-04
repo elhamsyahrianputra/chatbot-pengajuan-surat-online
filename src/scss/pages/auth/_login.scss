@@ -1,0 +1,87 @@
+@use "../../utilities/admin/colors" as *;
+#auth {
+    .auth-wrapper {
+        display: flex;
+
+        height: 100vh;
+        .aside-layout {
+            max-width: 480px;
+            padding: 24px;
+            height: 100%;
+            background-color: $neutral-100;
+            .aside-header {
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .aside-title {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    margin-top: 2rem;
+                    text-align: center;
+
+                    & > h1 {
+                        color: $neutral-800;
+                        font-size: 32px;
+                        font-weight: 700;
+                    }
+
+                    & > h4 {
+                        font-weight: 400;
+                        color: $neutral-600;
+                    }
+                }
+            }
+            .aside-illustration {
+                margin-top: 64px;
+                & > img {
+                    width: 100%;
+                }
+            }
+        }
+
+        #login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            .login-layout {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                max-width: 480px;
+
+                .login-title {
+                    margin-bottom: 2rem;
+
+                    & > h2 {
+                        font-size: 24px;
+                        margin-bottom: 0.75rem;
+                    }
+
+                    & > h4 {
+                        font-weight: 400;
+                        color: $neutral-600;
+                    }
+                }
+
+                .login-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                    width: 100%;
+
+                    .password-input {
+                        text-align: right;
+                        .forgot-password-text {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

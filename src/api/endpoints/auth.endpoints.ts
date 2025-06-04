@@ -1,5 +1,6 @@
 export const AUTH_ENDPOINTS = {
-  LOGIN: "/login",
-  REGISTER: "/register",
-  LOGOUT: "/logout",
+  LOGIN: "api/login",
+  REGISTER: "api/register",
+  LOGOUT: "api/logout",
+  GET_USER: "api/user"
 };

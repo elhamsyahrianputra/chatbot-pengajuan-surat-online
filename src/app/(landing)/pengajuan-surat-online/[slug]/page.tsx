@@ -1,5 +1,6 @@
 import { letterTypeService } from "@/api";
 import RequirementItem from "@/components/landing/Home/PengajuanSuratOnline/JenisSurat/RequirementItem";
+import Link from "next/link";
 
 interface PageProps {
   params: {
@@ -37,9 +38,9 @@ export default async function Page({ params }: PageProps) {
         <section id="submission-section">
           <h3 className="submission-title">Ajukan melalui form</h3>
           <div>
-            <a href="#" className="submission-link">
+            <Link href={`/pengajuan-surat-online/${letterType.slug}/form`} className="submission-link">
               Form Pengajuan Surat {letterType.name}
-            </a>
+            </Link>
           </div>
         </section>
         <section id="track-section">

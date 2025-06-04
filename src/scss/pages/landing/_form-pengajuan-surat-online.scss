@@ -1,0 +1,64 @@
+@use "sass:color";
+@use "../../utilities/admin/colors" as *;
+@use "../../utilities/landing/colors" as landing;
+
+#form-letter-submission {
+    .form-title {
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .form-control input {
+        border: 2px solid $neutral-500;
+
+        &:hover,
+        &:focus {
+            border: 2px solid landing.$primary;
+        }
+    }
+
+    .row {
+        margin-top: 1.5rem;
+    }
+
+    .form-noted {
+        margin-top: 2px;
+        display: block;
+        font-size: 12px;
+        color: $neutral-500;
+    }
+
+    .button-submit {
+        margin-top: 1rem;
+        color: $white;
+        background-color: color.adjust(landing.$primary, $lightness: 80%);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.71429;
+        min-width: 36px;
+        min-height: 36px;
+        padding: 6px 16px;
+        border-width: 0px;
+        border-radius: 8px;
+        transition:
+            background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+            filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            filter: opacity(60%);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            position: relative;
+            z-index: 1;
+            opacity: 70%;
+        }
+    }
+}

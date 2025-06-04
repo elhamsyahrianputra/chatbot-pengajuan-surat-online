@@ -1,76 +1,208 @@
-@use '../../utilities/admin/colors' as *;
+@use "../../utilities/admin/colors" as *;
 
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  padding-left: 40px;
-  padding-right: 40px;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  box-shadow: 0px 1px 2px 0px rgba($color: $neutral-400, $alpha: 0.2);
-
-  .navbar-nav {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
     display: flex;
-    gap: 0.5rem;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 72px;
+    display: flex;
     align-items: center;
-    
-    button {
-      display: flex;
-      align-items: center;
-      
-      img {
-        height: 24px;
-        width: 24px;
-      }
+    box-shadow: 0px 1px 2px 0px rgba($color: $neutral-400, $alpha: 0.2);
+
+    .navbar-nav {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        button {
+            display: flex;
+            align-items: center;
+
+            img {
+                height: 24px;
+                width: 24px;
+            }
+        }
+
+        .nav-profile {
+            display: flex;
+            height: 42px;
+            width: 42px;
+            justify-content: center;
+            position: relative;
+            align-items: center;
+
+            .profile-button {
+                padding: 0;
+                display: flex;
+                height: 42px;
+                width: 42px;
+                justify-content: center;
+                position: relative;
+                align-items: center;
+
+                .profile-avatar {
+                    border: 3px solid $white;
+                    object-fit: cover;
+                    padding: 4px;
+                    object-position: center;
+                    width: calc(100% - 2px);
+                    height: calc(100% - 2px);
+                    z-index: 2;
+                    position: relative;
+                    border-radius: 50%;
+                    background: $white;
+                }
+
+                .ring {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border-radius: 50%;
+                    background: linear-gradient($neutral-300 40%, $blue);
+                    display: block;
+                    z-index: 1;
+                    height: 100%;
+                    width: 100%;
+                    animation: rotate 6s infinite linear;
+                }
+            }
+
+            .profile-popup {
+                overflow: hidden;
+                height: 100vh;
+                width: 300px;
+                z-index: 20;
+                background-color: $white;
+                position: fixed;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                top: 0;
+                right: 0;
+                box-shadow: 0 0 16px 2px rgba($color: #000000, $alpha: 0.05);
+                transition: all 150ms ease-in-out;
+                &.close {
+                    transform: translateX(100%);
+                }
+
+                & > .popup-close {
+                    margin: 0.5rem;
+                    & > button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 36px;
+                        width: 36px;
+                        border-radius: 50%;
+                        transition: all 200ms ease-in-out;
+
+                        & > .icon {
+                            width: 20px;
+                        }
+
+                        &:hover {
+                            background-color: $neutral-200;
+                        }
+                    }
+                }
+
+                & > .popup-header {
+                    padding: 2rem 0;
+                    gap: 1.5rem;
+                    display: flex;
+                    text-align: center;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 84px;
+                        height: 84px;
+                    }
+
+                    .profile-data {
+                        .profile-name {
+                            color: $neutral-800;
+                        }
+                        .profile-email {
+                            font-size: 12px;
+                            color: $neutral-500;
+                        }
+                    }
+                }
+
+                & > .popup-list {
+                    flex: 1 0 0;
+                    display: flex;
+                    gap: 0.25rem;
+                    flex-direction: column;
+                    padding: 1rem 20px;
+                    margin: 1rem 0;
+                    border-top: 1px solid $neutral-200;
+                    border-bottom: 1px solid $neutral-200;
+
+                    .popup-item {
+                        padding: 8px 10px;
+                        border-radius: 4px;
+                        transition: background-color 150ms ease-in-out;
+
+                        .popup-link {
+                            & > .icon {
+                                opacity: 70%;
+                                filter: grayscale(80%);
+                            }
+                            font-size: 14px;
+                            color: $neutral-700;
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+                        }
+
+                        &:hover {
+                            .icon {
+                                opacity: 1;
+                            }
+                            color: $black;
+                            background-color: $neutral-200;
+                        }
+                    }
+                }
+
+                & > .popup-footer {
+                    padding: 20px;
+                    & > .button-logout {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        font-size: 14px;
+                        height: 48px;
+                        background-color: $blue-lighter;
+                        color: $blue;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        transition: all 200ms ease-in-out;
+
+                        &:hover {
+                            opacity: 0.75;
+                        }
+                    }
+                }
+            }
+        }
     }
-
-    .nav-profile {
-      display: flex;
-      height: 42px;
-      width: 42px;
-      justify-content: center;
-      position: relative;
-      align-items: center;
-
-      .profile-avatar {
-        border: 3px solid $white;
-        object-fit: cover;
-        padding: 4px;
-        object-position: center;
-        width: calc(100% - 2px);
-        height: calc(100% - 2px);
-        z-index: 2;
-        position: relative;
-        border-radius: 50%;
-        background: $white;
-      }
-
-      .ring {
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-radius: 50%;
-        background: linear-gradient($neutral-300 40%, $blue);
-        display: block;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
-        animation: rotate 6s infinite linear;
-      }
-    }
-  }
 }
 
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

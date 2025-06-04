@@ -9,7 +9,8 @@
     font-weight: 700;
     font-size: 0.875rem;
     line-height: 1.71429;
-    min-width: 64px;
+    min-width: 36px;
+    min-height: 36px;
     padding: 6px 12px;
     border-width: 0px;
     border-radius: 8px;
@@ -32,7 +33,7 @@
         color: $white;
         background-color: $yellow;
     }
-    
+
     &.button-green {
         color: $white;
         background-color: $green;
@@ -42,7 +43,12 @@
         color: $white;
         background-color: $blue;
     }
-    
+
+    &.button-blue-light {
+        color: $blue;
+        background-color: $blue-lighten;
+    }
+
     &.button-purple {
         color: $white;
         background-color: $purple;
@@ -60,5 +66,12 @@
 
     &:hover {
         filter: opacity(60%);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        position: relative;
+        z-index: 1;
+        opacity: 70%;
     }
 }

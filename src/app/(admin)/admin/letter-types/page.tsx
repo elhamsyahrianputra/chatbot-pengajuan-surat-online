@@ -1,14 +1,26 @@
-import { letterTypeService } from "@/api";
-import Breadcrumbs from "@/components/admin/ui/Breadcrumbs/Breadcrumbs";
-import ListAction from "@/components/admin/ui/Table/ActionList";
-import RequirementList from "@/components/admin/ui/Table/RequirementList";
-import TabButton from "@/components/admin/ui/Table/TabButton";
-import Table from "@/components/admin/ui/Table/Table";
-export default async function Page() {
-    const letterTypes = await letterTypeService.getAll({
-        include: "requirements",
-    });
+"use client";
 
+import { letterTypeService } from "@/api";
+import { LetterType } from "@/api/types/letter-type.types";
+import Breadcrumbs from "@/components/admin/ui/Breadcrumbs/Breadcrumbs";
+import ActionItem from "@/components/admin/ui/Table/ActionItem";
+import ActionList from "@/components/admin/ui/Table/ActionList";
+import RequirementList from "@/components/admin/ui/Table/RequirementList";
+import Table from "@/components/admin/ui/Table/Table";
+import { useEffect, useState } from "react";
+export default function Page() {
+    const [letterTypes, setLetterTypes] = useState<LetterType[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await letterTypeService.getAll({
+                include: "requirements",
+            });
+            setLetterTypes(data);
+            console.log(data);
+        };
+        fetchData();
+    });
     return (
         <>
             <Breadcrumbs
@@ -40,17 +52,13 @@ export default async function Page() {
                         <tr key={item.id}>
                             <td>{index + 1}</td>
                             <td>{item.name}</td>
+                            <td>{item.requirements && <RequirementList requirements={item.requirements} />}</td>
                             <td>
-                                {item.requirements && (
-                                    <RequirementList
-                                        requirements={item.requirements}
-                                    />
-                                )}
-                            </td>
-                            <td>
-                                <ListAction
-                                    href={`/admin/letter-types/${item.id}`}
-                                />
+                                <ActionList href={`/admin/letter-submissions/${item.id}`}>
+                                    <ActionItem icon="trash" onSubmit={() => {}}>
+                                        Delete
+                                    </ActionItem>
+                                </ActionList>
                             </td>
                         </tr>
                     ))}

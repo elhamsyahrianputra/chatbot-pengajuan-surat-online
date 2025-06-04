@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import Navbar from "@/components/landing/Navbar/Navbar";
 import Footer from "@/components/landing/Footer/Footer";
 import Chatbot from "@/components/landing/Home/Chatbot/Chatbot";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -19,10 +20,12 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${roboto.className}`}>
-                <Navbar />
-                {children}
-                <Chatbot />
-                <Footer />
+                <AuthProvider>
+                    <Navbar />
+                    {children}
+                    <Chatbot />
+                    <Footer />
+                </AuthProvider>
             </body>
         </html>
     );
