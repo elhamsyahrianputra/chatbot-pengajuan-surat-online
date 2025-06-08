@@ -13,7 +13,7 @@ export const authService = {
         return response.data;
     },
 
-    async getUser(params?: GetUserParams): Promise<UserResponse> {
+    async getUser(): Promise<UserResponse> {
         const response = await apiClient.get(AUTH_ENDPOINTS.GET_USER);
         return response.data.data;
     }

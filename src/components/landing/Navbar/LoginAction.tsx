@@ -9,29 +9,17 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function LoginAction() {
-    const [user, setUser] = useState<UserResponse>({
-        id: "",
-        role: "",
-        email: "",
-        name: "",
-    });
+    const [user, setUser] = useState<UserResponse>({} as UserResponse);
 
     const { isLogin, setIsLogin } = useAuth();
     const router = useRouter();
-
-    async function handleLogout() {
-        await authService.logout();
-        localStorage.removeItem("token");
-        setIsLogin(false);
-        router.push('/login');
-    }
 
     useEffect(() => {
         const token = localStorage.getItem("token");
         console.log(token);
         if (token) {
             const fetchData = async () => {
-                const data = await authService.getUser({ include: "profile" });
+                const data = await authService.getUser();
                 setUser(data);
             };
             setIsLogin(true);

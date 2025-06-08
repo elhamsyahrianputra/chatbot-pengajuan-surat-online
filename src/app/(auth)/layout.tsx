@@ -1,5 +1,6 @@
 import "@/scss/admin.scss";
 import { publicSans } from "@/ui/fonts";
+import Link from "next/link";
 
 export default function RootLayout({
     children,
@@ -12,7 +13,9 @@ export default function RootLayout({
                 <div className="auth-wrapper">
                     <aside className="aside-layout">
                         <div className="aside-header">
-                            <img src="/img/logo/uns-logo.webp" alt="" />
+                            <Link href="/">
+                                <img src="/img/logo/uns-logo.webp" alt="" />
+                            </Link>
                             <div className="aside-title">
                                 <h1>Selamat Datang</h1>
                                 <h4>Di Portal Dashboard Akademik FKIP UNS</h4>

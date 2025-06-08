@@ -5,7 +5,7 @@ import { LetterType } from "@/api/types/letter-type.types";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 
-export const getLetterTypes = tool(
+const getLetterTypes = tool(
     async () => {
         const response = await fetch("http://localhost:8000/api/letter-types");
         const data = await response.json();
@@ -19,7 +19,7 @@ export const getLetterTypes = tool(
     },
 );
 
-export const getLetterRequirements = tool(
+const getLetterRequirements = tool(
     async ({ id }: { id: string }) => {
         const response = await fetch(`http://localhost:8000/api/letter-types/${id}?include=requirements`);
         const data = await response.json();
@@ -38,7 +38,7 @@ export const getLetterRequirements = tool(
     },
 );
 
-export const getNewestLetterSubmissions = tool(
+const getNewestLetterSubmissions = tool(
     async () => {
         try {
             const response = await letterSubmissionService.getLatestByUser({ include: "letterType" });
@@ -75,7 +75,7 @@ export const getNewestLetterSubmissions = tool(
         }
     },
     {
-          name: "get_latest_letter_submissions",
+        name: "get_latest_letter_submissions",
         // description:
         //     "Menampilkan status pengajuan surat terakhir paling terbaru berdasarkan user yang aktif. Gunakan tool ini ketika user menanyakan tentang status pengajuan surat terbaru, pengajuan terakhir, atau status surat yang baru saja diajukan.",
         description: "Mengambil jenis, status, dan tanggal pengajuan surat terakhir yang diajukan oleh pengguna",
@@ -83,7 +83,7 @@ export const getNewestLetterSubmissions = tool(
     },
 );
 
-export const getLetterSubmissionsByCode = tool(
+const getLetterSubmissionsByCode = tool(
     async ({ code }: { code: string }) => {
         try {
             const response = await letterSubmissionService.getByCode(code, { include: "letterType" });
@@ -100,7 +100,6 @@ export const getLetterSubmissionsByCode = tool(
                             year: "numeric",
                             hour: "2-digit",
                             minute: "2-digit",
-                            second: "2-digit",
                             hour12: false,
                         })
                         .replace(/\//g, "-") || "-"
@@ -122,7 +121,7 @@ export const getLetterSubmissionsByCode = tool(
     },
 );
 
-export const explainLetterStatus = tool(
+const explainLetterStatus = tool(
     async ({ status }) => {
         const explanations: Record<string, string> = {
             submitted: "📨 Surat telah diajukan dan menunggu untuk diproses oleh admin.",
@@ -143,3 +142,7 @@ export const explainLetterStatus = tool(
         }),
     },
 );
+
+const Tools = [getLetterTypes, getLetterRequirements, getNewestLetterSubmissions, getLetterSubmissionsByCode, explainLetterStatus];
+
+export default Tools;
