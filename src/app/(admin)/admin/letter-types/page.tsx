@@ -17,7 +17,6 @@ export default function Page() {
                 include: "requirements",
             });
             setLetterTypes(data);
-            console.log(data);
         };
         fetchData();
     });
@@ -54,7 +53,7 @@ export default function Page() {
                             <td>{item.name}</td>
                             <td>{item.requirements && <RequirementList requirements={item.requirements} />}</td>
                             <td>
-                                <ActionList href={`/admin/letter-submissions/${item.id}`}>
+                                <ActionList href={`/admin/letter-types/${item.id}`}>
                                     <ActionItem icon="trash" onSubmit={() => {}}>
                                         Delete
                                     </ActionItem>

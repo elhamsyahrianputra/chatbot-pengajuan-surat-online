@@ -1,16 +1,17 @@
-interface FormControlProps {
+interface TextAreaControlProps {
     name?: string;
     label?: string;
     placeholder?: string;
-    onChange?: React.ChangeEventHandler<HTMLInputElement>;
+    onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
     value?: any;
     type?: string;
     disabled?: boolean;
     accept?: string;
     error?: string;
+    rows?: number;
 }
 
-export default function FormControl({ name, label, placeholder, onChange, value, type = "text", disabled = false, accept = "*/*", error }: FormControlProps) {
+export default function TextAreaControl({ name, label, rows = 4, placeholder, onChange, value, disabled = false, accept = "*/*", error }: TextAreaControlProps) {
     return (
         <div className="form-control">
             {label && (
@@ -18,7 +19,7 @@ export default function FormControl({ name, label, placeholder, onChange, value,
                     {label}
                 </label>
             )}
-            <input className="form-input" type={type} name={name} id={name} placeholder={placeholder} onChange={onChange} value={value} accept={accept} disabled={disabled} />
+            <textarea className="form-input" name={name} id={name} placeholder={placeholder} onChange={onChange} value={value} disabled={disabled} rows={rows} style={{ resize: "none" }} />
             {error && <div className="error-message">{error}</div>}
         </div>
     );

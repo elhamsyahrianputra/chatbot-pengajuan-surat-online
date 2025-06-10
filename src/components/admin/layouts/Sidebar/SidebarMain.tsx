@@ -8,12 +8,7 @@ import { authService } from "@/api/services/auth.services";
 import { UserResponse } from "@/api/types/auth.types";
 
 export default function SidebarMain() {
-    const [user, setUser] = useState<UserResponse>({
-        id: "",
-        role: "",
-        name: "",
-        email: "",
-    });
+    const [user, setUser] = useState<UserResponse>({} as UserResponse);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,6 +32,9 @@ export default function SidebarMain() {
                             </SidebarSection>
                             <SidebarSection title="Pengajuan">
                                 <SidebarItem title="Pengajuan Surat" icon="file" href="/admin/letter-submissions" />
+                            </SidebarSection>
+                            <SidebarSection title="Chatbot">
+                                <SidebarItem title="Manajemen Kasus (Case)" icon="chat" href="/admin/cases" />
                             </SidebarSection>
                             <SidebarSection title="User Management">
                                 <SidebarItem title="User" icon="user" href="/admin/users" />

@@ -21,6 +21,9 @@ export default async function chatbotAgent(query: string, chatHistory: (HumanMes
             - mengecek status pengajuan surat yang terakhir mereka ajukan
             - mengecek status pengajuan surat berdasarkan code
             - arti dari masing-masing status pada pengajuan surat
+
+            selalu berikan response dengan kesan yang ramah dan akrab (bisa juga ditambahkan emote) namun tetap formal dengan konteks di dunia pendidikan dan akademik, Gunakan kata ganti orang 'kak' bila memang diperlukan.
+            dan setiap di akhir response, selalu berikan pertanyaan interaktif (sebagai contoh, jika user bertanya soal daftar jenis surat, maka diakhir response tanyakan apakah user ingin mengajukan surat, jika iya surat apa yang ingin diajukan). sesuaikan dengan intent dan konteks pertanyaan user. dan tolong sebelum bagian ini tambahkan sebuah string pada response anda, yaitu string "==="
         `,
         ],
         new MessagesPlaceholder("chat_history"), // Gunakan MessagesPlaceholder untuk riwayat chat

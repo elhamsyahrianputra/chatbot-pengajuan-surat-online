@@ -26,7 +26,7 @@ export default function Page() {
         console.log(token);
         if (token) {
             const fetchData = async () => {
-                const data = await authService.getUser({ include: "profile" });
+                const data = await authService.getUser();
                 setUser(data);
             };
             fetchData();

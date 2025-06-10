@@ -1,6 +1,5 @@
 import { letterSubmissionService } from "@/api";
 import { LetterRequirement } from "@/api/types/letter-requirement.types";
-import { LetterSubmission } from "@/api/types/letter-submission.types";
 import { LetterType } from "@/api/types/letter-type.types";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
@@ -9,19 +8,20 @@ const getLetterTypes = tool(
     async () => {
         const response = await fetch("http://localhost:8000/api/letter-types");
         const data = await response.json();
-        const daftar = data.data.map((item: any) => `- id: ${item.id} | name: ${item.name}`).join("\n");
+        const daftar = data.data.map((item: LetterType) => `- slug: ${item.slug} | name: ${item.name}`).join("\n");
         return `Berikut adalah daftar jenis surat:\n${daftar}`;
     },
     {
         name: "get_letter_types",
-        description: "Mengambil semua jenis surat beserta id-nya. Gunakan ini jika kamu ingin mencari ID dari nama surat.",
+        description:
+            "Mengambil daftar semua jenis surat yang tersedia beserta 'slug' uniknya. Gunakan tool ini sebagai langkah pertama jika pengguna menyebutkan nama surat (misalnya 'Surat Keterangan Aktif Kuliah') tetapi agent belum tahu slug-nya (misalnya 'surat-keterangan-aktif-kuliah'). Slug ini wajib digunakan untuk tool lain seperti get_letter_requirements. Selain itu slug ini hanya digunakan untuk anda mencari data, tidak boleh diketahui oleh user/pengguna. Bila pengguna bertanya terkait slug, beritahu jika anda tidak mengetahuinya",
         schema: z.object({}),
     },
 );
 
 const getLetterRequirements = tool(
-    async ({ id }: { id: string }) => {
-        const response = await fetch(`http://localhost:8000/api/letter-types/${id}?include=requirements`);
+    async ({ slug }: { slug: string }) => {
+        const response = await fetch(`http://localhost:8000/api/letter-types/slug/${slug}?include=requirements`);
         const data = await response.json();
 
         const surat = data.data;
@@ -31,9 +31,9 @@ const getLetterRequirements = tool(
     },
     {
         name: "get_letter_requirements",
-        description: "Menampilkan persyaratan yang dibutuhkan untuk mengajukan sebuah surat berdasarkan ID surat.",
+        description: "Menampilkan persyaratan yang dibutuhkan untuk mengajukan sebuah surat berdasarkan slug suratnya. Gunakan tool get_leter_types untuk mengetahui slug dari surat yang di minta oleh pengguna dan jangan minta slug kepada pengguna",
         schema: z.object({
-            id: z.string().describe("ID dari jenis surat yang ingin diajukan"),
+            slug: z.string().describe("SLug dari jenis surat yang ingin diajukan"),
         }),
     },
 );
@@ -76,9 +76,8 @@ const getNewestLetterSubmissions = tool(
     },
     {
         name: "get_latest_letter_submissions",
-        // description:
-        //     "Menampilkan status pengajuan surat terakhir paling terbaru berdasarkan user yang aktif. Gunakan tool ini ketika user menanyakan tentang status pengajuan surat terbaru, pengajuan terakhir, atau status surat yang baru saja diajukan.",
-        description: "Mengambil jenis, status, dan tanggal pengajuan surat terakhir yang diajukan oleh pengguna",
+        description:
+            "Mengambil status pengajuan surat PALING BARU dari pengguna yang sedang login. Gunakan tool ini jika pengguna menanyakan 'status surat saya', 'pengajuan terakhir saya bagaimana?', atau pertanyaan serupa yang tidak menyebutkan kode spesifik.",
         schema: z.object({}),
     },
 );
@@ -105,11 +104,16 @@ const getLetterSubmissionsByCode = tool(
                         .replace(/\//g, "-") || "-"
                 }`
             );
+            // Di dalam getLetterSubmissionsByCode
         } catch (error: any) {
-            // Handle different types of errors
-            if (error.response?.status === 403) {
-                return `❌ Anda tida memiliki pengajuan surat dengan code ${code}`;
+            if (error.response?.status === 404) {
+                return `❌ Pengajuan surat dengan kode "${code}" tidak dapat ditemukan. Mohon periksa kembali kode Anda.`;
             }
+            if (error.response?.status === 403) {
+                return `❌ Anda tidak memiliki izin untuk melihat pengajuan surat dengan kode "${code}". Pastikan Anda login dengan akun yang benar.`;
+            }
+            console.error(`Error fetching submission with code ${code}:`, error);
+            return `Maaf, terjadi kesalahan saat mengambil data untuk kode ${code}. Silakan coba lagi nanti.`;
         }
     },
     {

@@ -12,6 +12,7 @@ import chatbotAgent from "@/utils/langchain/agents";
 import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
+import FeedbackOption from "./FeedbackDialog";
 
 export default function Chatbot() {
     const dialogBodyRef = useRef<HTMLDivElement>(null);
@@ -145,6 +146,7 @@ export default function Chatbot() {
             {history.map((item, index) => (
                 <li key={index} className="dialog-item">
                     <ChatbotMessage message={item.message} role={item.role} />
+                    {item.role == 'assistant' && <FeedbackOption />}
                 </li>
             ))}
             {isMessageLoading && (
@@ -187,7 +189,7 @@ export default function Chatbot() {
         <div className="chatbot">
             {!isShowDialog && (
                 <button className="chatbot-button" onClick={toggleDialog}>
-                    <img src="icon/chatbot.png" alt="chatbot icon" />
+                    <img src="/icon/chatbot.png" alt="chatbot icon" />
                 </button>
             )}
 
@@ -214,16 +216,18 @@ export default function Chatbot() {
                         </div>
                     </div>
 
-                    {isLoading ? (
-                        <div style={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>Loading...</div>
-                    ) : (
-                        <>
-                            <div className="dialog-body" ref={dialogBodyRef}>
-                                {isLogin ? renderChatHistory() : renderLoginPrompt()}
-                            </div>
-                            <div className="dialog-footer">{isLogin && renderMessageForm()}</div>
-                        </>
-                    )}
+                    <div className="dialog-body" ref={dialogBodyRef}>
+                        {isLogin ? (
+                            isLoading ? (
+                                <div style={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>Loading...</div>
+                            ) : (
+                                renderChatHistory()
+                            )
+                        ) : (
+                            renderLoginPrompt()
+                        )}
+                    </div>
+                    <div className="dialog-footer">{isLogin && renderMessageForm()}</div>
                 </div>
             )}
         </div>
