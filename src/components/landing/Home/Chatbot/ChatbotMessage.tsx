@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface ChatbotMessageProps {
     role: "user" | "assistant" | "system";
@@ -11,7 +12,7 @@ export default function ChatbotMessage({ role, message }: ChatbotMessageProps) {
 
     return (
         <div className={`dialog-buble ${role}`}>
-            <ReactMarkdown>{formattedMessage}</ReactMarkdown>
+            <ReactMarkdown  remarkPlugins={[remarkGfm]}>{formattedMessage}</ReactMarkdown>
         </div>
     );
 }

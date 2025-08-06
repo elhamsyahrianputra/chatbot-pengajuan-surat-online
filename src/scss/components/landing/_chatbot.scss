@@ -138,6 +138,15 @@
                         max-width: 90%;
                         font-size: 13px;
 
+                        & a {
+                            color: #0070f3; /* Warna biru, sesuaikan dengan tema Anda */
+                            text-decoration: underline;
+                        }
+
+                        & a:hover {
+                            text-decoration: none;
+                        }
+
                         &.assistant {
                             background-color: $white;
                         }

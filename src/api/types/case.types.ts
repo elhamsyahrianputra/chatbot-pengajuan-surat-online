@@ -15,6 +15,11 @@ export type GetCaseParams = {
     include?: string | string[];
 };
 
+export type GetVerifiedCaseParams = {
+    include?: string | string[];
+    keywords?: string | string[];
+};
+
 export interface StoreCaseRequest {
     problem: string;
     solution: string;

@@ -1,6 +1,6 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatOllama } from "@langchain/ollama";
-import {ChatGoogleGenerativeAI} from "@langchain/google-genai"
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
 // export const llm = new ChatOpenAI({
 //     // modelName: "deepseek/deepseek-chat-v3-0324:free",
@@ -20,8 +20,8 @@ import {ChatGoogleGenerativeAI} from "@langchain/google-genai"
 // });
 
 export const llm = new ChatGoogleGenerativeAI({
-  model: "gemini-2.5-flash-preview-04-17",
-  temperature: 0,
-  maxRetries: 2,
-  apiKey: "AIzaSyAhWXEiL4EOQYWXJNMbrddSbVIv9rNZ6Gw"
+    model: "gemini-2.5-flash",
+    temperature: 0,
+    maxRetries: 2,
+    apiKey: "AIzaSyAhWXEiL4EOQYWXJNMbrddSbVIv9rNZ6Gw",
 });

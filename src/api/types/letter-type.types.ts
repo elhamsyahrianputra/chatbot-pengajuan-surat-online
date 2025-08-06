@@ -4,6 +4,7 @@ export interface LetterType {
     id: string;
     name: string;
     slug: string;
+    format_url: string;
     created_at?: Date;
     updated_at?: Date;
     requirements?: LetterRequirement[];

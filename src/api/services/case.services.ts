@@ -1,6 +1,6 @@
 import {apiClient} from "../api";
 import { CASE_ENDPOINTS } from "../endpoints/case.endpoint";
-import { Case, GetCaseParams, StoreCaseRequest, UpdateCaseRequest } from "../types/case.types";
+import { Case, GetCaseParams, GetVerifiedCaseParams, StoreCaseRequest, UpdateCaseRequest } from "../types/case.types";
 
 export const caseService = {
     /**
@@ -9,6 +9,17 @@ export const caseService = {
      */
     async getAll(params?: GetCaseParams): Promise<Case[]> {
         const response = await apiClient.get(CASE_ENDPOINTS.INDEX, {
+            params
+        });
+        return response.data.data;
+    },
+
+    /**
+     * Get all verified cases 
+     * @returns List of all verified cases
+     */
+    async getVerified(params?: GetVerifiedCaseParams): Promise<Case[]> {
+        const response = await apiClient.get(CASE_ENDPOINTS.GET_VERIFIED, {
             params
         });
         return response.data.data;

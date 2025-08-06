@@ -26,12 +26,16 @@ export default async function Page({ params }: PageProps) {
                 <div className="letter-type-header">
                     <h1 className="letter-type-title">Surat {letterType.name}</h1>
                 </div>
-                <section id="download-section">
-                    <h3>Download Format Surat {letterType.name}</h3>
-                    <div>
-                        <a href="#">Format Surat {letterType.name}</a>
-                    </div>
-                </section>
+                {letterType.format_url && (
+                    <section id="download-section">
+                        <h3>Download Format Surat {letterType.name}</h3>
+                        <div>
+                            <a target="_blank" href={letterType.format_url}>
+                                Format Surat {letterType.name}
+                            </a>
+                        </div>
+                    </section>
+                )}
                 <section id="recruitment-section">
                     <h3 className="recruitment-title">Persyaratan</h3>
                     <ul className="recruitment-list">{letterType.requirements?.map((item) => <RequirementItem key={item.id} text={item.name} />)}</ul>
