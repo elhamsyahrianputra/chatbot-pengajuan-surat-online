@@ -1,16 +1,14 @@
 "use client";
 
 import { authService } from "@/api/services/auth.services";
-import { LoginResponse, UserResponse } from "@/api/types/auth.types";
 import Button from "@/components/admin/ui/Button/Button";
 import FormFloating from "@/components/admin/ui/Form/FormFloating";
 import { useRouter } from "next/navigation";
-import { FormHTMLAttributes, useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Page() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user, setUser] = useState<UserResponse>({} as UserResponse);
 
     const router = useRouter();
 
@@ -35,7 +33,6 @@ export default function Page() {
                 // Simpan token ke localStorage
                 localStorage.setItem("token", response.token);
                 const user = await authService.getUser();
-                setUser(user);
 
                 if (user.role === "admin") {
                     router.push("/admin");

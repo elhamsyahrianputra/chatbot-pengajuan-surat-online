@@ -3,7 +3,7 @@ interface TextAreaControlProps {
     label?: string;
     placeholder?: string;
     onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
-    value?: any;
+    value?: string;
     type?: string;
     disabled?: boolean;
     accept?: string;
@@ -11,7 +11,7 @@ interface TextAreaControlProps {
     rows?: number;
 }
 
-export default function TextAreaControl({ name, label, rows = 4, placeholder, onChange, value, disabled = false, accept = "*/*", error }: TextAreaControlProps) {
+export default function TextAreaControl({ name, label, rows = 4, placeholder, onChange, value, disabled = false, error }: TextAreaControlProps) {
     return (
         <div className="form-control">
             {label && (

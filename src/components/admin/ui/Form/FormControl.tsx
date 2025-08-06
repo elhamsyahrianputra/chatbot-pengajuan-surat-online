@@ -3,7 +3,7 @@ interface FormControlProps {
     label?: string;
     placeholder?: string;
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
-    value?: any;
+    value?: string;
     type?: string;
     disabled?: boolean;
     accept?: string;

@@ -13,6 +13,7 @@ import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
 import FeedbackOption from "./FeedbackDialog";
+import Image from "next/image";
 
 export default function Chatbot() {
     const dialogBodyRef = useRef<HTMLDivElement>(null);
@@ -46,7 +47,7 @@ export default function Chatbot() {
             setIsLogin(true);
             fetchUser();
         }
-    }, [isLogin]);
+    }, [setIsLogin]);
 
     // Fetch user data when logged in
     useEffect(() => {
@@ -115,7 +116,7 @@ export default function Chatbot() {
                 const newAiMessage = new AIMessage(assistantResponse);
                 setChatHistoryForAgent((prev) => [...prev, newAiMessage]);
             } catch (error) {
-                // ... (error handling)
+                console.log(error);
             } finally {
                 setIsMessageLoading(false);
             }
@@ -146,7 +147,7 @@ export default function Chatbot() {
             {history.map((item, index) => (
                 <li key={index} className="dialog-item">
                     <ChatbotMessage message={item.message} role={item.role} />
-                    {item.role == 'assistant' && <FeedbackOption />}
+                    {/* {item.role == "assistant" && <FeedbackOption />} */}
                 </li>
             ))}
             {isMessageLoading && (
@@ -189,7 +190,7 @@ export default function Chatbot() {
         <div className="chatbot">
             {!isShowDialog && (
                 <button className="chatbot-button" onClick={toggleDialog}>
-                    <img src="/icon/chatbot.png" alt="chatbot icon" />
+                    <Image src="/icon/chatbot.png" alt="chatbot icon" width={20} height={20} />
                 </button>
             )}
 
@@ -198,7 +199,7 @@ export default function Chatbot() {
                     {/* Header */}
                     <div className="dialog-header">
                         <div className="header-avatar">
-                            <img src="/icon/chatbot.png" alt="Lofbot avatar" />
+                            <Image src="/icon/chatbot.png" alt="Lofbot avatar" width={30} height={30} />
                         </div>
                         <div className="header-info">
                             <h4>Lofbot</h4>

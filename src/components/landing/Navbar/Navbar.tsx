@@ -5,6 +5,8 @@ import NavbarItem from "./NavbarItem"
 import MenuItem from "./MenuItem";
 import NavbarMenu from "./NavbarMenu";
 import LoginAction from "./LoginAction";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
@@ -12,17 +14,20 @@ export default function Navbar() {
       <div className="container">
         <div className="navbar-wrapper">
           <div className="navbar-brand">
-            <a href="/" className="nav-link">
-              <img
+            <Link href="/" className="nav-link">
+              <Image
                 src="/img/logo/akademik-fkip-logo.png"
                 alt="Logo Akademik FKIP UNS"
+                width={251}
+                height={69}
               />
-              <img
+              <Image
                 src="/img/logo/kampus-merdeka-logo.png"
                 alt="Logo Kampus Merdeka"
-                style={{ height: "64px" }}
+                width={129}
+                height={69}
               />
-            </a>
+            </Link>
           </div>
           <nav>
             <ul className="navbar-nav">

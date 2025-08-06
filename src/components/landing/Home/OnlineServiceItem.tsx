@@ -14,7 +14,6 @@ interface OnlineServiceItemProps {
 
 export default function OnlineServiceItem({
   icon,
-  href,
   title,
   text,
 }: OnlineServiceItemProps) {

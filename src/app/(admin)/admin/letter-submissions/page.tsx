@@ -173,7 +173,7 @@ export default function Page() {
                                 <StatusBadge status={item.status} />
                             </td>
                             <td>
-                                {new Date(item.created_at!!)
+                                {new Date(item.created_at!)
                                     .toLocaleDateString("id-ID", {
                                         day: "2-digit",
                                         month: "2-digit",

@@ -1,25 +1,18 @@
 "use client";
 
-import { letterSubmissionService } from "@/api";
-import { authService } from "@/api/services/auth.services";
 import { caseService } from "@/api/services/case.services";
-import { UserResponse } from "@/api/types/auth.types";
 import { Case } from "@/api/types/case.types";
-import { LetterSubmission } from "@/api/types/letter-submission.types";
-import StatusBadge from "@/components/admin/pages/LetterSubmission/StatusBadge";
 import Badge from "@/components/admin/ui/Badge/Badge";
 import Breadcrumbs from "@/components/admin/ui/Breadcrumbs/Breadcrumbs";
 import Button from "@/components/admin/ui/Button/Button";
 import FormControl from "@/components/admin/ui/Form/FormControl";
-import FormFloating from "@/components/admin/ui/Form/FormFloating";
-import FormSelect from "@/components/admin/ui/Form/FormSelect";
 import TextAreaControl from "@/components/admin/ui/Form/TextAreaControl";
 import { useParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 
 export default function Page() {
     const params = useParams();
-    let [cased, setCased] = useState<Case>({} as Case);
+    const [cased, setCased] = useState<Case>({} as Case);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +22,7 @@ export default function Page() {
             setCased(data);
         };
         fetchData();
-    }, []);
+    }, [params.id]);
 
     // Handle Submit
     async function handleSubmit(e: FormEvent) {

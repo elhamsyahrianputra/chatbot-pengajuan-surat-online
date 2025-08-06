@@ -50,7 +50,6 @@ export const letterRequirementService = {
      * @returns Success status
      */
     async delete(id: string): Promise<{ message: string }> {
-        apiClient
         const response = await apiClient.delete(LETTER_REQUIREMENT_ENDPOINTS.DELETE(id));
         return response.data;
     },

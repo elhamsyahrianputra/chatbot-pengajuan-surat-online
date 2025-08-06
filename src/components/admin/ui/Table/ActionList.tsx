@@ -8,7 +8,6 @@ interface ActionListProp {
 import Link from "next/link";
 import Icon from "../Icon/Icon";
 import { useEffect, useRef, useState } from "react";
-import ActionItem from "./ActionItem";
 
 export default function ActionList({ href, children }: ActionListProp) {
     const [isShow, setIsShow] = useState(false);

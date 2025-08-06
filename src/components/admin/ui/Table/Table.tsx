@@ -1,5 +1,3 @@
-import Avatar from "../Avatar/Avatar";
-import Badge from "../Badge/Badge";
 import Icon from "../Icon/Icon";
 import TabButton from "./TabButton";
 

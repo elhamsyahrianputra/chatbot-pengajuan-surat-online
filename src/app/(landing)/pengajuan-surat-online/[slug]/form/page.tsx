@@ -3,7 +3,6 @@
 import { letterSubmissionService, letterTypeService } from "@/api";
 import { authService } from "@/api/services/auth.services";
 import { UserResponse } from "@/api/types/auth.types";
-import Button from "@/components/admin/ui/Button/Button";
 import FormControl from "@/components/admin/ui/Form/FormControl";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -93,7 +92,7 @@ export default function Page() {
             alert("Pengajuan surat berhasil!");
             router.push('/submissions'); // Sesuaikan dengan rute yang sesuai
             
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error("Gagal mengajukan surat:", error);
             
             // Tangani error dari server

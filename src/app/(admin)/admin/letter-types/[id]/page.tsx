@@ -29,7 +29,7 @@ export default function Page() {
         name: "",
         description: "",
     });
-    let [isFormLetterRequirement, setIsFormLetterRequirement] = useState(false);
+    const [isFormLetterRequirement, setIsFormLetterRequirement] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,7 +40,7 @@ export default function Page() {
             setBreadcrumbValue(data.name);
         };
         fetchData();
-    }, []);
+    }, [params.id]);
 
     function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
         const name = e.target.value;

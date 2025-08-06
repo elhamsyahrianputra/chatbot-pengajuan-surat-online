@@ -1,5 +1,6 @@
 import "@/scss/admin.scss";
 import { publicSans } from "@/ui/fonts";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function RootLayout({
@@ -14,7 +15,7 @@ export default function RootLayout({
                     <aside className="aside-layout">
                         <div className="aside-header">
                             <Link href="/">
-                                <img src="/img/logo/uns-logo.webp" alt="" />
+                                <Image src="/img/logo/uns-logo.webp" alt="awefawef" height={10} width={10} />
                             </Link>
                             <div className="aside-title">
                                 <h1>Selamat Datang</h1>
@@ -22,7 +23,7 @@ export default function RootLayout({
                             </div>
                         </div>
                         <div className="aside-illustration">
-                            <img src="/img/illustration/login-illustration.png" alt="illustrations" />
+                            <Image src="/img/illustration/login-illustration.png" alt="illustrations" width={432} height={345}/>
                         </div>
                     </aside>
                     {children}

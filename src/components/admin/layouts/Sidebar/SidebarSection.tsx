@@ -10,7 +10,7 @@ interface SidebarSectionProps {
 
 export default function SidebarSection({title, children, initialCollapsed = false}: SidebarSectionProps) {
 
-    let [isCollapsed, setIsCollapsed] = useState(initialCollapsed);
+    const [isCollapsed, setIsCollapsed] = useState(initialCollapsed);
 
     function handleSidebarListCollapsed() {
         setIsCollapsed((prev) => !prev);

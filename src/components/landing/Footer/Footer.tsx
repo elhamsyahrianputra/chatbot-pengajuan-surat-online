@@ -10,7 +10,6 @@ import {
   faGlobe,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ContactItem from "./ContactItem";
 import NewsItem from "./NewsItem";
 import AcademicItem from "./AcademicItem";

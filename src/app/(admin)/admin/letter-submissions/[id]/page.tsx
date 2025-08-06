@@ -5,7 +5,6 @@ import { authService } from "@/api/services/auth.services";
 import { UserResponse } from "@/api/types/auth.types";
 import { LetterSubmission } from "@/api/types/letter-submission.types";
 import StatusBadge from "@/components/admin/pages/LetterSubmission/StatusBadge";
-import Badge from "@/components/admin/ui/Badge/Badge";
 import Breadcrumbs from "@/components/admin/ui/Breadcrumbs/Breadcrumbs";
 import Button from "@/components/admin/ui/Button/Button";
 import FormSelect from "@/components/admin/ui/Form/FormSelect";
@@ -34,7 +33,7 @@ export default function Page() {
     }, []);
     const [letterSubmission, setLetterSubmission] = useState<LetterSubmission>({} as LetterSubmission);
 
-    let [updateStatus, setUpdateStatus] = useState("");
+    const [updateStatus, setUpdateStatus] = useState("");
 
     async function handleLetterSubmissionStatus() {
         const response = await letterSubmissionService.update(params.id as string, {
@@ -59,7 +58,7 @@ export default function Page() {
             setLetterSubmission(data);
         };
         fetchData();
-    }, []);
+    }, [params.id]);
     return (
         <>
             <Breadcrumbs
@@ -103,7 +102,7 @@ export default function Page() {
                                 <div className="submission-item">
                                     <h4>Tanggal Pengajuan</h4>
                                     <span>
-                                        {new Date(letterSubmission.created_at!!)
+                                        {new Date(letterSubmission.created_at!)
                                             .toLocaleDateString("id-ID", {
                                                 day: "2-digit",
                                                 month: "2-digit",

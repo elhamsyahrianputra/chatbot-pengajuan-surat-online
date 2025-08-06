@@ -1,5 +1,5 @@
 import { AUTH_ENDPOINTS } from "../endpoints/auth.endpoints";
-import type { GetUserParams, LoginRequest, LoginResponse, UserResponse } from "../types/auth.types";
+import type { LoginRequest, LoginResponse, UserResponse } from "../types/auth.types";
 import {apiAuth, apiClient} from "../api";
 
 export const authService = {
