@@ -208,12 +208,12 @@ export default function Chatbot() {
                         <div className="header-action">
                             {isLogin && (
                                 <button className="button-delete" onClick={handleDeleteThread} style={{ color: '#ffffff' }}>
-                                    <Icon name="TrashIcon" />
+                                    <IconAdmin icon="trash" />
                                 </button>
                             )}
                             <button className="button-toggle" onClick={toggleDialog} style={{ color: '#ffffff' }}>
-                                <Icon name="ChevronRightIcon" />
-                            </button>
+                                <IconAdmin icon="chevron-right-white" />
+                            </button> 
                         </div>
                     </div>
 

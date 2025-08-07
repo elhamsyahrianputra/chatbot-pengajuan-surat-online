@@ -30,7 +30,7 @@ export default function Navbar() {
           </div>
           <nav>
             <ul className="navbar-nav">
-              <NavbarItem title="Home" icon='HomeIcon' href="/" />
+              <NavbarItem title="Home" href="/" />
               <NavbarItem title="Layanan Online">
                 <NavbarMenu>
                   <MenuItem

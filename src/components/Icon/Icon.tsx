@@ -36,15 +36,7 @@ const Icon: FC<IconProps> = ({ name, variant = "solid", className, ...props }) =
                 // Akses komponen ikon dari library berdasarkan 'name'
                 const FetchedIcon = library[name as keyof typeof library];
 
-                if (isMounted) {
-                    if (FetchedIcon && typeof FetchedIcon === 'function') {
-                        // Set komponen ikon ke dalam state
-                        setIconComponent(() => FetchedIcon);
-                    } else {
-                        // Log error jika ikon tidak ditemukan
-                        console.error(`Ikon "${name}" tidak ditemukan pada varian "${variant}"`);
-                    }
-                }
+                setIconComponent(() => typeof FetchedIcon);
             } catch (err) {
                 // Tangani error jika terjadi masalah saat impor
                 console.error(`Gagal mengimpor ikon: ${name}`, err);
