@@ -1,4 +1,4 @@
-import Icon from "../Icon/Icon";
+import Icon from "@/components/admin/ui/Icon/Icon";
 
 interface ActionItemProps {
     icon: string;

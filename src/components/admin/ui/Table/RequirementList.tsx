@@ -1,3 +1,5 @@
+import { LetterRequirement } from "@/api/types/letter-requirement.types";
+
 export default function RequirementList({requirements}: {requirements: LetterRequirement[]}) {
     return (
         <ul className="requirement-list">

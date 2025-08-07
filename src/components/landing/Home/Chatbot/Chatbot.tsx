@@ -5,15 +5,15 @@ import { Thread } from "@/api/types/thread.types";
 import { authService } from "@/api/services/auth.services";
 import { threadService } from "@/api/services/thread.services";
 import { useAuth } from "@/context/AuthContext";
-import Icon from "@/components/admin/ui/Icon/Icon";
 import ChatbotMessage from "./ChatbotMessage";
 import ChatbotMessageLoading from "./ChatbotMessageLoading";
 import chatbotAgent from "@/utils/langchain/agents";
 import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
-import FeedbackOption from "./FeedbackDialog";
 import Image from "next/image";
+import { default as IconAdmin } from "@/components/admin/ui/Icon/Icon";
+import Icon from "@/components/Icon/Icon";
 
 export default function Chatbot() {
     const dialogBodyRef = useRef<HTMLDivElement>(null);
@@ -180,8 +180,8 @@ export default function Chatbot() {
                 onKeyDown={handleKeyDown}
                 disabled={isMessageLoading}
             />
-            <button type="submit" className="form-button" disabled={isMessageLoading || !message.trim()}>
-                <Icon icon="angle-right" />
+            <button type="submit" className="form-button" disabled={isMessageLoading || !message.trim()} style={{ color: '#ffffff' }}>
+                <IconAdmin icon="chevron-right-white" />
             </button>
         </form>
     );
@@ -207,12 +207,12 @@ export default function Chatbot() {
                         </div>
                         <div className="header-action">
                             {isLogin && (
-                                <button className="button-delete" onClick={handleDeleteThread}>
-                                    <Icon icon="trash" />
+                                <button className="button-delete" onClick={handleDeleteThread} style={{ color: '#ffffff' }}>
+                                    <Icon name="TrashIcon" />
                                 </button>
                             )}
-                            <button className="button-toggle" onClick={toggleDialog}>
-                                <Icon icon="chevron-right" />
+                            <button className="button-toggle" onClick={toggleDialog} style={{ color: '#ffffff' }}>
+                                <Icon name="ChevronRightIcon" />
                             </button>
                         </div>
                     </div>

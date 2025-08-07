@@ -1,18 +1,17 @@
-import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PaperClipIcon } from "@heroicons/react/24/outline";
 
 interface AcademicItemProps {
-  href: string;
-  children: React.ReactNode;
+    href: string;
+    children: React.ReactNode;
 }
 
 export default function AcademicItem({ href, children }: AcademicItemProps) {
-  return (
-    <li className="academic-item">
-      <a className="academic-link" href={href}>
-        <FontAwesomeIcon icon={faPaperclip} className="link-icon" size="sm" />
-        <span className="link-text">{children}</span>
-      </a>
-    </li>
-  );
+    return (
+        <li className="academic-item">
+            <a className="academic-link" href={href}>
+                <PaperClipIcon className="link-icon" style={{ height: '20px', width: '20px' }} />
+                <span className="link-text">{children}</span>
+            </a>
+        </li>
+    );
 }

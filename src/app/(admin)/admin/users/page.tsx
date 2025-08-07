@@ -1,16 +1,15 @@
 "use client";
 
 import { userService } from "@/api/services/user.services";
-import { UserResponse } from "@/api/types/auth.types";
+import { User } from "@/api/types/user.types";
 import Badge from "@/components/admin/ui/Badge/Badge";
 import Breadcrumbs from "@/components/admin/ui/Breadcrumbs/Breadcrumbs";
-import ListAction from "@/components/admin/ui/Table/ActionList";
 import Table from "@/components/admin/ui/Table/Table";
 import UserProfile from "@/components/admin/ui/Table/UserProfile";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-    const [users, setUsers] = useState<UserResponse[]>([]);
+    const [users, setUsers] = useState<User[]>([] as User[]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,7 +60,7 @@ export default function Page() {
                                 <Badge color="blue">{item.semester}</Badge>
                             </td>
                             <td>
-                                <ListAction href={`/admin/users/${item.id}`} />
+                                {/* <ListAction href={`/admin/users/${item.id}`} /> */}
                             </td>
                         </tr>
                     ))}

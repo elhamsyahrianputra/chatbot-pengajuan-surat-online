@@ -1,6 +1,5 @@
 "use client";
 
-import { faHome } from "@fortawesome/free-solid-svg-icons";
 import NavbarItem from "./NavbarItem"
 import MenuItem from "./MenuItem";
 import NavbarMenu from "./NavbarMenu";
@@ -31,7 +30,7 @@ export default function Navbar() {
           </div>
           <nav>
             <ul className="navbar-nav">
-              <NavbarItem title="Home" icon={faHome} href="/" />
+              <NavbarItem title="Home" icon='HomeIcon' href="/" />
               <NavbarItem title="Layanan Online">
                 <NavbarMenu>
                   <MenuItem

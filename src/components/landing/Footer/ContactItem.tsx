@@ -1,15 +1,15 @@
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "@/components/Icon/Icon";
 
 interface ContactItemProps {
-  icon: IconDefinition;
+  icon: string;
   children: React.ReactNode;
 }
 
 export default function ContactItem({ icon, children }: ContactItemProps) {
+
   return (
-    <li className="contact-item">
-      <FontAwesomeIcon icon={icon} />
+    <li className="contact-item flex items-center gap-2">
+      <Icon name={icon} />
       <span>{children}</span>
     </li>
   );

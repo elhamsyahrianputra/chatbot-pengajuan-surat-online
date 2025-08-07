@@ -1,19 +1,6 @@
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
-import {
-  faBuilding,
-  faEnvelope,
-  faGlobe,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
 import ContactItem from "./ContactItem";
 import NewsItem from "./NewsItem";
 import AcademicItem from "./AcademicItem";
-import SocmedItem from "./SocmedItem";
 
 export default function Footer() {
   return (
@@ -52,14 +39,14 @@ export default function Footer() {
             <div className="footer-contact">
               <h4 className="contact-title">Kontak</h4>
               <ul className="contact-list">
-                <ContactItem icon={faBuilding}>
+                <ContactItem icon="BuildingOfficeIcon">
                   Jalan Ir. Sutami 36A Surakarta 57126
                 </ContactItem>
-                <ContactItem icon={faPhone}>(0271) 669124 / 648939</ContactItem>
-                <ContactItem icon={faEnvelope}>
+                <ContactItem icon="PhoneIcon">(0271) 669124 / 648939</ContactItem>
+                <ContactItem icon="EnvelopeIcon">
                   akademik@fkip.uns.ac.id
                 </ContactItem>
-                <ContactItem icon={faGlobe}>
+                <ContactItem icon="GlobeAltIcon">
                   akademik@fkip.uns.ac.id
                 </ContactItem>
               </ul>
@@ -110,10 +97,10 @@ export default function Footer() {
             </div>
             <div className="copyright-socmed">
               <ul className="socmed-list">
-                <SocmedItem icon={faFacebook} />
-                <SocmedItem icon={faInstagram} />
-                <SocmedItem icon={faYoutube} />
-                <SocmedItem icon={faTwitter} />
+                {/* <SocmedItem icon="ArrowRightIcon" />
+                <SocmedItem icon="ArrowRightIcon" />
+                <SocmedItem icon="ArrowRightIcon" />
+                <SocmedItem icon="ArrowRightIcon" /> */}
               </ul>
             </div>
           </div>

@@ -1,11 +1,10 @@
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "@/components/Icon/Icon";
 
 export default function RequirementItem({text}: {text: string}) {
   return (
     <li className="recruitment-item">
       <span className="recruitment-icon">
-        <FontAwesomeIcon icon={faCheck} />
+        <Icon name='CheckIcon' />
       </span>
       <p className="recruitment-text">
         {text}

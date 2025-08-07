@@ -1,8 +1,6 @@
+'use client';
+
 import OnlineServiceItem from "@/components/landing/Home/OnlineServiceItem";
-import {
-  faMailBulk,
-  faUserGraduate,
-} from "@fortawesome/free-solid-svg-icons";
 
 export default function Page() {
   return (
@@ -47,14 +45,14 @@ export default function Page() {
         <div className="container">
           <ul className="online-service-list">
             <OnlineServiceItem
-              icon={faMailBulk}
+              icon='EnvelopeIcon'
               href="/pengajuan-surat-online"
               title="Layanan Surat Online"
               text="Guna Meningkatkan pelayanan, Akademik FKIP UNS memberikan pelayanan
             surat menyurat secara online yang dibuka setiap hari di jam kerja"
             />
             <OnlineServiceItem
-              icon={faUserGraduate}
+              icon='AcademicCapIcon'
               href="#"
               title="Layanan Wisuda Online"
               text="Melayani pengumpulan berkas wisuda secara online"

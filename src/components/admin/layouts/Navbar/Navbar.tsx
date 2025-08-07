@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import Avatar from "../../ui/Avatar/Avatar";
-import Icon from "../../ui/Icon/Icon";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { authService } from "@/api/services/auth.services";
+import Icon from "@/components/admin/ui/Icon/Icon";
 
 export default function Navbar() {
     const router = useRouter();

@@ -1,14 +1,13 @@
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "@/components/admin/ui/Icon/Icon";
 
 interface SocmedItemProps {
-  icon: IconDefinition;
+  icon: string;
 }
 
 export default function SocmedItem({ icon }: SocmedItemProps) {
   return (
     <li className="socmed-item">
-      <FontAwesomeIcon icon={icon} />
+      <Icon icon={icon} />
     </li>
   );
 }

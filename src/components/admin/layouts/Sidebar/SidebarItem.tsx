@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Icon from "../../ui/Icon/Icon";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import Icon from "@/components/admin/ui/Icon/Icon";
 
 interface SidebarItemProps {
     title: string;

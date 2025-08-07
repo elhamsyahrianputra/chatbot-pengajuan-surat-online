@@ -15,11 +15,7 @@ export default function Page() {
     const [fileError, setFileError] = useState("");
     const [file, setFile] = useState<File | null>(null);
 
-    const [user, setUser] = useState<UserResponse>({
-        id: "",
-        name: "",
-        email: "",
-    });
+    const [user, setUser] = useState<UserResponse>({} as UserResponse);
 
     const [letterType, setLetterType] = useState<{ id: string; name: string; slug: string }>({
         id: "",
@@ -48,65 +44,87 @@ export default function Page() {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFileError("");
         const selectedFile = e.target.files?.[0] || null;
-        
+
         // Validasi file
         if (selectedFile) {
             // Validasi tipe file
-            if (selectedFile.type !== 'application/pdf') {
+            if (selectedFile.type !== "application/pdf") {
                 setFileError("File harus berjenis PDF");
                 setFile(null);
                 return;
             }
-            
+
             // Validasi ukuran file (10MB = 10 * 1024 * 1024 bytes)
             if (selectedFile.size > 10 * 1024 * 1024) {
                 setFileError("Ukuran file tidak boleh melebihi 10MB");
                 setFile(null);
                 return;
             }
-            
+
             setFile(selectedFile);
         }
     };
 
+    // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+
+    //     if (!file) {
+    //         setFileError("File persyaratan harus diunggah");
+    //         return;
+    //     }
+
+    //     try {
+    //         setIsSubmitting(true);
+
+    //         // Buat FormData untuk mengirim file
+    //         const formData = new FormData();
+    //         formData.append("letter_type", letterType.slug);
+    //         formData.append("file_path", file);
+
+    //         // Kirim data ke API
+    //         await letterSubmissionService.create(formData);
+
+    //         // Redirect atau tampilkan pesan sukses
+    //         alert("Pengajuan surat berhasil!");
+    //         router.push("/submissions"); // Sesuaikan dengan rute yang sesuai
+    //     } catch (error: unknown) {
+    //         console.error("Gagal mengajukan surat:", error);
+
+    //         // Tangani error dari server
+    //         if (error.response?.data?.errors) {
+    //             const errors = error.response.data.errors;
+    //             if (errors.file_path) {
+    //                 setFileError(errors.file_path[0]);
+    //             }
+    //         } else {
+    //             alert("Terjadi kesalahan saat mengajukan surat. Silakan coba lagi.");
+    //         }
+    //     } finally {
+    //         setIsSubmitting(false);
+    //     }
+    // };
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+
         if (!file) {
             setFileError("File persyaratan harus diunggah");
             return;
         }
-        
-        try {
             setIsSubmitting(true);
-            
+
             // Buat FormData untuk mengirim file
             const formData = new FormData();
-            formData.append('letter_type', letterType.slug);
-            formData.append('file_path', file);
-            
+            formData.append("letter_type", letterType.slug);
+            formData.append("file_path", file);
+
             // Kirim data ke API
             await letterSubmissionService.create(formData);
-            
+
             // Redirect atau tampilkan pesan sukses
             alert("Pengajuan surat berhasil!");
-            router.push('/submissions'); // Sesuaikan dengan rute yang sesuai
-            
-        } catch (error: unknown) {
-            console.error("Gagal mengajukan surat:", error);
-            
-            // Tangani error dari server
-            if (error.response?.data?.errors) {
-                const errors = error.response.data.errors;
-                if (errors.file_path) {
-                    setFileError(errors.file_path[0]);
-                }
-            } else {
-                alert("Terjadi kesalahan saat mengajukan surat. Silakan coba lagi.");
-            }
-        } finally {
+            router.push("/submissions"); // Sesuaikan dengan rute yang sesuai
+
             setIsSubmitting(false);
-        }
     };
 
     if (loading) {
@@ -147,23 +165,13 @@ export default function Page() {
                             </div>
                             <div className="row">
                                 <div className="col">
-                                    <FormControl 
-                                        type="file" 
-                                        label="File Persyaratan" 
-                                        accept=".pdf"
-                                        onChange={handleFileChange}
-                                        error={fileError}
-                                    />
+                                    <FormControl type="file" label="File Persyaratan" accept=".pdf" onChange={handleFileChange} error={fileError} />
                                     <span className="form-noted">Semua persyaratan dikumpulkan dalam satu file</span>
                                     <span className="form-noted">File harus berjenis .pdf, dan maksimal berukuran 10MB</span>
                                 </div>
                             </div>
                             <div className="flex justify-content-end">
-                                <button 
-                                    className="button-submit" 
-                                    type="submit" 
-                                    disabled={isSubmitting}
-                                >
+                                <button className="button-submit" type="submit" disabled={isSubmitting}>
                                     {isSubmitting ? "Mengirim..." : "Ajukan Surat"}
                                 </button>
                             </div>

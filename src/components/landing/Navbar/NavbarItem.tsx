@@ -1,21 +1,18 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronDown,
-  IconDefinition,
-} from "@fortawesome/free-solid-svg-icons";
+
+import Icon from "@/components/Icon/Icon";
 import Link from "next/link";
 
 // Perbaiki tipe
 type NavbarItemWithChildren = {
   title: string;
-  icon?: IconDefinition;
+  icon?: string;
   children: React.ReactNode;
   href?: string;
 };
 
 type NavbarItemWithoutChildren = {
   title: string;
-  icon?: IconDefinition;
+  icon?: string;
   children?: undefined;
   href: string; //
 };
@@ -33,9 +30,8 @@ export default function NavbarItem({
     return (
       <li className="navbar-item">
         <span className="nav-link">
-          {icon && <FontAwesomeIcon icon={icon} size="lg" />}
+          {icon && <Icon name={icon} />}
           {title}
-          <FontAwesomeIcon icon={faChevronDown} size="xs" />
         </span>
         {children}
       </li>
@@ -45,7 +41,7 @@ export default function NavbarItem({
   return (
     <li className="navbar-item">
       <Link href={href!} className="nav-link">
-        {icon && <FontAwesomeIcon icon={icon} size="lg" />}
+        {icon && <Icon name={icon} />}
         {title}
       </Link>
     </li>

@@ -1,5 +1,4 @@
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 interface NewsItemProps {
   href: string;
@@ -10,7 +9,7 @@ export default function NewsItem({ href, children }: NewsItemProps) {
   return (
     <li className="news-item">
       <a href={href} className="news-link">
-        <FontAwesomeIcon icon={faChevronRight} size="xs" />
+        <ChevronRightIcon style={{ height: '20px', width: '20px' }} />
         <span>{children}</span>
       </a>
     </li>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { roboto } from "@/ui/fonts";
 import "@/scss/landing.scss";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 import Navbar from "@/components/landing/Navbar/Navbar";
 import Footer from "@/components/landing/Footer/Footer";
 import Chatbot from "@/components/landing/Home/Chatbot/Chatbot";

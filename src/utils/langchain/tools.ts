@@ -99,37 +99,25 @@ const getNewestLetterSubmissions = tool(
 
 const getLetterSubmissionsByCode = tool(
     async ({ code }: { code: string }) => {
-        try {
-            const response = await letterSubmissionService.getByCode(code, { include: "letterType" });
+        const response = await letterSubmissionService.getByCode(code, { include: "letterType" });
 
-            return (
-                `Berikut adalah data pengajuan surat anda dengan code ${code}:\n\n` +
-                `📄 Jenis Surat   : ${response.letter_type?.name || "-"}\n` +
-                `📌 Status        : ${response.status || "-"}\n` +
-                `📅 Tanggal Diajukan : ${
-                    new Date(response.created_at!)
-                        .toLocaleString("id-ID", {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            hour12: false,
-                        })
-                        .replace(/\//g, "-") || "-"
-                }`
-            );
-            // Di dalam getLetterSubmissionsByCode
-        } catch (error: unknown) {
-            if (error.response?.status === 404) {
-                return `❌ Pengajuan surat dengan kode "${code}" tidak dapat ditemukan. Mohon periksa kembali kode Anda.`;
-            }
-            if (error.response?.status === 403) {
-                return `❌ Anda tidak memiliki izin untuk melihat pengajuan surat dengan kode "${code}". Pastikan Anda login dengan akun yang benar.`;
-            }
-            console.error(`Error fetching submission with code ${code}:`, error);
-            return `Maaf, terjadi kesalahan saat mengambil data untuk kode ${code}. Silakan coba lagi nanti.`;
-        }
+        return (
+            `Berikut adalah data pengajuan surat anda dengan code ${code}:\n\n` +
+            `📄 Jenis Surat   : ${response.letter_type?.name || "-"}\n` +
+            `📌 Status        : ${response.status || "-"}\n` +
+            `📅 Tanggal Diajukan : ${
+                new Date(response.created_at!)
+                    .toLocaleString("id-ID", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false,
+                    })
+                    .replace(/\//g, "-") || "-"
+            }`
+        );
     },
     {
         name: "get_letter_submissions_by_code",

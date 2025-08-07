@@ -1,21 +1,26 @@
+"use client";
+
 import { letterTypeService } from "@/api";
+import { LetterType } from "@/api/types/letter-type.types";
 import Icon from "@/components/admin/ui/Icon/Icon";
 import RequirementItem from "@/components/landing/Home/PengajuanSuratOnline/JenisSurat/RequirementItem";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-interface PageProps {
-    params: {
-        slug: string;
-    };
-}
+export default function Page() {
+    const params = useParams();
+    const [letterType, setLetterType] = useState<LetterType>({} as LetterType);
 
-export default async function Page({ params }: PageProps) {
-    const { slug } = params;
-
-    const letterType = await letterTypeService.getBySlug(slug, {
-        include: "requirements",
-    });
-
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await letterTypeService.getBySlug(params.slug as string, {
+                include: "requirements",
+            });
+            setLetterType(data);
+        };
+        fetchData();
+    }, [params.slug]);
     return (
         <main id="jenis-surat">
             <div className="container">
