@@ -19,7 +19,6 @@ const Icon: FC<IconProps> = ({ name, variant = "solid", className, ...props }) =
     useEffect(() => {
         // Reset komponen saat nama atau varian berubah untuk menghindari tampilan ikon lama
         setIconComponent(null);
-        let isMounted = true; 
 
         const importIcon = async () => {
             if (!name) return;
@@ -44,11 +43,6 @@ const Icon: FC<IconProps> = ({ name, variant = "solid", className, ...props }) =
         };
 
         importIcon();
-
-        // Cleanup function untuk mencegah memory leak
-        return () => {
-            isMounted = false;
-        };
     }, [name, variant]); // Jalankan effect setiap kali 'name' atau 'variant' berubah
 
     if (!IconComponent) {

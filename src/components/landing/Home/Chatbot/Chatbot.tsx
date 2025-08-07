@@ -13,7 +13,6 @@ import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
 import Image from "next/image";
 import { default as IconAdmin } from "@/components/admin/ui/Icon/Icon";
-import Icon from "@/components/Icon/Icon";
 
 export default function Chatbot() {
     const dialogBodyRef = useRef<HTMLDivElement>(null);
