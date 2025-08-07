@@ -6,7 +6,7 @@ import { z } from "zod";
 
 const getLetterTypes = tool(
     async () => {
-        const response = await fetch("http://localhost:8000/api/letter-types");
+        const response = await fetch("https://chatbot.admintokoplastik.my.id/api/letter-types");
         const data = await response.json();
         const daftar = data.data.map((item: LetterType) => `- slug: ${item.slug} | name: ${item.name}`).join("\n");
         return `Berikut adalah daftar jenis surat:\n${daftar}`;
@@ -21,7 +21,7 @@ const getLetterTypes = tool(
 
 const getLetterRequirements = tool(
     async ({ slug }: { slug: string }) => {
-        const response = await fetch(`http://localhost:8000/api/letter-types/slug/${slug}?include=requirements`);
+        const response = await fetch(`https://chatbot.admintokoplastik.my.id/api/letter-types/slug/${slug}?include=requirements`);
         const data = await response.json();
 
         const surat = data.data;
