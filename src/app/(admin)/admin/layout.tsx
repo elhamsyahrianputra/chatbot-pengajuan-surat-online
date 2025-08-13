@@ -2,6 +2,12 @@ import "@/scss/admin.scss";
 import Sidebar from "@/components/admin/layouts/Sidebar/Sidebar";
 import Navbar from "@/components/admin/layouts/Navbar/Navbar";
 import { publicSans } from "@/ui/fonts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Dashboard - Akademik FKIP UNS",
+    description: "Akademik FKIP UNS",
+};
 
 export default function RootLayout({
     children,
@@ -10,7 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html>
-            <body className={`${publicSans.className}`} style={{ overflowX: 'hidden' }}>
+            <body className={`${publicSans.className}`} style={{ overflowX: "hidden" }}>
                 <Sidebar />
                 <div className="root-wrapper">
                     <Navbar />

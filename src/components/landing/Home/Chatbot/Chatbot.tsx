@@ -141,7 +141,17 @@ export default function Chatbot() {
     const renderChatHistory = () => (
         <ul className="dialog-list">
             <li className="dialog-item">
-                <ChatbotMessage message={`Hallo ${user.name}. Selamat datang di Layanan Pengajuan Surat Online FKIP UNS. Ada yang bisa aku bantu?`} role="assistant" />
+                <ChatbotMessage
+                    message={`Hallo ${user.name}. Selamat datang di Layanan Pengajuan Surat Onlien FKIP UNS. Berikut adalah beberapa layanan yang bisa saya bantu:
+1. Jenis Surat yang bisa diajukan
+2. Persyaratan yang dibutuhkan untuk mengajukan surat tertentu
+3. Mengecek status pengajuan surat terakhir yang diajukan
+4. Mengecek status pengajuan surat berdasarkan kode unik
+5. Menjelaskan arti dari masing-masing status pengajuan
+
+Kira-kira, kakak mau aku bantu yang mana dulu nih?😊`}
+                    role="assistant"
+                />
             </li>
             {history.map((item, index) => (
                 <li key={index} className="dialog-item">
@@ -179,7 +189,7 @@ export default function Chatbot() {
                 onKeyDown={handleKeyDown}
                 disabled={isMessageLoading}
             />
-            <button type="submit" className="form-button" disabled={isMessageLoading || !message.trim()} style={{ color: '#ffffff' }}>
+            <button type="submit" className="form-button" disabled={isMessageLoading || !message.trim()} style={{ color: "#ffffff" }}>
                 <IconAdmin icon="chevron-right-white" />
             </button>
         </form>
@@ -206,13 +216,13 @@ export default function Chatbot() {
                         </div>
                         <div className="header-action">
                             {isLogin && (
-                                <button className="button-delete" onClick={handleDeleteThread} style={{ color: '#ffffff' }}>
+                                <button className="button-delete" onClick={handleDeleteThread} style={{ color: "#ffffff" }}>
                                     <IconAdmin icon="trash" />
                                 </button>
                             )}
-                            <button className="button-toggle" onClick={toggleDialog} style={{ color: '#ffffff' }}>
+                            <button className="button-toggle" onClick={toggleDialog} style={{ color: "#ffffff" }}>
                                 <IconAdmin icon="chevron-right-white" />
-                            </button> 
+                            </button>
                         </div>
                     </div>
 

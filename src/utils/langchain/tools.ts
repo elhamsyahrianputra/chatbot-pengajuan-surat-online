@@ -1,14 +1,16 @@
-import { letterSubmissionService } from "@/api";
+import { letterSubmissionService, letterTypeService } from "@/api";
 import { LetterRequirement } from "@/api/types/letter-requirement.types";
 import { LetterType } from "@/api/types/letter-type.types";
-import { tool } from "@langchain/core/tools";
+import { DynamicTool, tool } from "@langchain/core/tools";
 import { z } from "zod";
+import { llm } from "./llm";
+import { caseService } from "@/api/services/case.services";
+import { Case } from "@/api/types/case.types";
 
 const getLetterTypes = tool(
     async () => {
-        const response = await fetch("https://chatbot.admintokoplastik.my.id/api/letter-types");
-        const data = await response.json();
-        const daftar = data.data.map((item: LetterType) => `- slug: ${item.slug} | name: ${item.name}`).join("\n");
+        const response = await letterTypeService.getAll();
+        const daftar = response.map((item: LetterType) => `- slug: ${item.slug} | name: ${item.name}`).join("\n");
         return `Berikut adalah daftar jenis surat:\n${daftar}`;
     },
     {
@@ -21,19 +23,17 @@ const getLetterTypes = tool(
 
 const getLetterRequirements = tool(
     async ({ slug }: { slug: string }) => {
-        const response = await fetch(`https://chatbot.admintokoplastik.my.id/api/letter-types/slug/${slug}?include=requirements`);
-        const data = await response.json();
+        const response = await letterTypeService.getBySlug(slug, { include: "requirements" });
 
-        const surat = data.data;
-        const reqs = surat.requirements.map((req: LetterRequirement, index: number) => `${index + 1}. ${req.name}`).join("\n");
+        const reqs = response.requirements?.map((req: LetterRequirement, index: number) => `${index + 1}. ${req.name}`).join("\n");
 
         // Persiapkan pesan dasar
-        let responseMessage = `Berikut adalah persyaratan untuk "${surat.name}":\n${reqs}`;
+        let responseMessage = `Berikut adalah persyaratan untuk "${response.name}":\n${reqs}`;
 
         // Cek jika format_url ada
-        if (surat.format_url) {
+        if (response.format_url) {
             // 1. Decode URL agar menjadi format yang bersih dan dapat dibaca
-            const decodedUrl = decodeURIComponent(surat.format_url);
+            const decodedUrl = decodeURIComponent(response.format_url);
 
             // 2. Gunakan format Markdown untuk membuat link yang bisa diklik
             const linkMarkdown = `[Klik di sini untuk melihat format surat](${decodedUrl})`;
@@ -128,6 +128,27 @@ const getLetterSubmissionsByCode = tool(
     },
 );
 
+const explainAllLetterStatuses = tool(
+    async () => {
+        const explanations: Record<string, string> = {
+            submitted: "📨 Surat telah diajukan dan menunggu untuk diproses oleh admin.",
+            approved: "✅ Surat telah disetujui oleh petugas dan sedang dalam proses verifikasi.",
+            rejected: "❌ Surat ditolak. Silakan cek alasan penolakan.",
+            revision: "✏️ Surat perlu direvisi. Silakan perbaiki sesuai catatan revisi dan ajukan ulang.",
+            completed: "📂 Proses surat telah selesai. Anda bisa mengambil surat di kantor FKIP UNS.",
+            canceled: "🛑 Pengajuan surat dibatalkan, baik oleh user maupun sistem.",
+        };
+
+        return Object.entries(explanations)
+            .map(([key, desc]) => `${key}: ${desc}`)
+            .join("\n");
+    },
+    {
+        name: "explain_all_letter_statuses",
+        description: "Menjelaskan arti dari semua status surat.",
+    },
+);
+
 const explainLetterStatus = tool(
     async ({ status }) => {
         const explanations: Record<string, string> = {
@@ -150,77 +171,93 @@ const explainLetterStatus = tool(
     },
 );
 
-// const searchCaseRecords = new DynamicTool({
-//     name: "search_case_records",
-//     description:
-//         "WAJIB digunakan sebagai langkah PERTAMA untuk SEMUA pertanyaan pengguna. Tool ini mencari jawaban di basis pengetahuan (case records) dari masalah yang pernah diselesaikan. Jika ditemukan solusi yang relevan, KEMBALIKAN solusi tersebut. Jika tool ini mengembalikan pesan 'Tidak ditemukan solusi yang relevan', barulah pertimbangkan untuk menggunakan tool lain yang lebih spesifik. Tool ini adalah gerbang utama sebelum memanggil tool lain.",
-//     func: async (input: string) => {
-//         try {
-//             // Langkah 1: Gunakan LLM untuk mengekstrak kata kunci dari pertanyaan pengguna
-//             const prompt = `Ekstrak kata kunci paling penting dari kalimat berikut: "${input}". Berikan jawaban HANYA dalam format JSON array string. Contoh: ["keyword1", "keyword2", "keyword3"]`;
-//             const llmResult = await llm.invoke(prompt);
+const searchCaseRecords = new DynamicTool({
+    name: "search_case_records",
+    description:
+        "WAJIB digunakan sebagai langkah PERTAMA untuk SEMUA pertanyaan pengguna. Tool ini mencari jawaban di basis pengetahuan (case records) dari masalah yang pernah diselesaikan. Jika ditemukan solusi yang relevan, KEMBALIKAN solusi tersebut. Jika tool ini mengembalikan pesan 'Tidak ditemukan solusi yang relevan', barulah pertimbangkan untuk menggunakan tool lain yang lebih spesifik. Tool ini adalah gerbang utama sebelum memanggil tool lain.",
+    func: async (input: string) => {
+        try {
+            // Langkah 1: Gunakan LLM untuk mengekstrak kata kunci dari pertanyaan pengguna
+            const prompt = `Ekstrak kata kunci paling penting dari kalimat berikut: "${input}". Berikan jawaban HANYA dalam format JSON array string. Contoh: ["keyword1", "keyword2", "keyword3"]`;
+            const llmResult = await llm.invoke(prompt);
 
-//             let keywords: string[] = [];
-//             try {
-//                 // Coba parsing hasil dari LLM
-//                 const parsedResult = JSON.parse(llmResult.content as string);
-//                 if (Array.isArray(parsedResult)) {
-//                     keywords = parsedResult;
-//                 }
-//             } catch (e) {
-//                 // Jika LLM tidak mengembalikan JSON yang valid, gunakan input mentah sebagai fallback
-//                 console.log("Gagal mem-parsing keywords dari LLM, menggunakan input mentah:", e);
-//                 keywords = input.split(" ");
-//             }
+            console.log(input);
+            console.log(prompt);
+            console.log(llmResult);
+            console.log(llmResult.content);
 
-//             if (keywords.length === 0) {
-//                 return "Tidak ada kata kunci yang bisa diekstrak untuk pencarian kasus.";
-//             }
+            let keywords: string[] = [];
+            try {
+                let content = llmResult.content as string;
 
-//             // Langkah 2: Panggil API Anda dengan kata kunci yang sudah diekstrak
-//             // Asumsi: caseRecordService.get() bisa menerima query 'keywords'
-//             const response = await caseService.getVerified({
-//                 keywords: keywords.join(","), // Kirim keywords sebagai string dipisahkan koma
-//             });
+                // Langkah 1: Hapus semua karakter newline (`\n`) dan ` ```json` dari string
+                content = content.replace(/```json|```/g, "").replace(/\n/g, "");
 
-//             const caseRecords = response;
+                // Langkah 2: Sekarang string sudah satu baris, regex sederhana bisa digunakan
+                const jsonMatch = content.match(/(\[.*\])/); // Tanpa flag 's'
 
-//             if (!caseRecords || caseRecords.length === 0) {
-//                 return "Tidak ditemukan solusi yang relevan dari kasus sebelumnya.";
-//             }
+                if (jsonMatch && jsonMatch[0]) {
+                    // Jika ditemukan, parse bagian itu saja
+                    keywords = JSON.parse(jsonMatch[0]);
+                    console.log(keywords);
+                } else {
+                    // Jika tidak ada yang cocok sama sekali, lempar error agar ditangkap oleh catch
+                    throw new Error("Respons LLM tidak mengandung array JSON yang valid.");
+                }
+            } catch (e) {
+                // Fallback jika parsing tetap gagal
+                console.log("Gagal mem-parsing keywords dari LLM, menggunakan input mentah:", e);
+                keywords = input.split(" "); // Nanti kita perbaiki juga fallback ini
+            }
 
-//             // Langkah 3: (Opsional tapi direkomendasikan) Lakukan skoring sederhana jika API mengembalikan > 1 hasil
-//             // untuk menemukan yang terbaik.
-//             let bestCase: Case = {} as Case;
-//             let maxScore = 0;
+            if (keywords.length === 0) {
+                return "Tidak ada kata kunci yang bisa diekstrak untuk pencarian kasus.";
+            }
 
-//             caseRecords.forEach((record: Case) => {
-//                 let currentScore = 0;
-//                 keywords.forEach((keyword) => {
-//                     if (record.keywords.toLowerCase().includes(keyword.toLowerCase())) {
-//                         currentScore++;
-//                     }
-//                 });
-//                 if (currentScore > maxScore) {
-//                     maxScore = currentScore;
-//                     bestCase = record;
-//                 }
-//             });
+            // Langkah 2: Panggil API Anda dengan kata kunci yang sudah diekstrak
+            // Asumsi: caseRecordService.get() bisa menerima query 'keywords'
+            const response = await caseService.getVerified({
+                keywords: keywords.join(","), // Kirim keywords sebagai string dipisahkan koma
+            });
 
-//             if (!bestCase) {
-//                 // Jika tidak ada yang cocok sama sekali setelah skoring, kembalikan hasil pertama
-//                 return `Ditemukan kasus yang mungkin relevan. Solusinya adalah: ${caseRecords[0].solution}`;
-//             }
+            const caseRecords = response;
 
-//             // Langkah 4: Kembalikan solusi dari kasus terbaik
-//             return `Ditemukan kasus serupa yang pernah terjadi. Solusinya adalah: ${bestCase.solution}`;
-//         } catch (error) {
-//             console.error("Error di searchCaseRecords tool:", error);
-//             return "Terjadi kesalahan saat mencoba mencari di basis pengetahuan.";
-//         }
-//     },
-// });
+            if (!caseRecords || caseRecords.length === 0) {
+                return "Tidak ditemukan solusi yang relevan dari kasus sebelumnya.";
+            }
 
-const Tools = [getLetterTypes, getLetterRequirements, getNewestLetterSubmissions, getLetterSubmissionsByCode, explainLetterStatus];
+            // Langkah 3: (Opsional tapi direkomendasikan) Lakukan skoring sederhana jika API mengembalikan > 1 hasil
+            // untuk menemukan yang terbaik.
+            let bestCase: Case = {} as Case;
+            let maxScore = 0;
+
+            caseRecords.forEach((record: Case) => {
+                let currentScore = 0;
+                keywords.forEach((keyword) => {
+                    if (record.keywords.toLowerCase().includes(keyword.toLowerCase())) {
+                        currentScore++;
+                    }
+                });
+                if (currentScore > maxScore) {
+                    maxScore = currentScore;
+                    bestCase = record;
+                }
+            });
+
+            if (!bestCase) {
+                // Jika tidak ada yang cocok sama sekali setelah skoring, kembalikan hasil pertama
+                return `Ditemukan kasus yang mungkin relevan. Solusinya adalah: ${caseRecords[0].solution}`;
+            }
+
+            // Langkah 4: Kembalikan solusi dari kasus terbaik
+            return `Ditemukan kasus serupa yang pernah terjadi. Solusinya adalah: ${bestCase.solution}`;
+        } catch (error) {
+            console.error("Error di searchCaseRecords tool:", error);
+            return "Terjadi kesalahan saat mencoba mencari di basis pengetahuan.";
+        }
+    },
+});
+
+const Tools = [searchCaseRecords, explainAllLetterStatuses, getLetterTypes, getLetterRequirements, getNewestLetterSubmissions, getLetterSubmissionsByCode, explainLetterStatus];
 
 export default Tools;

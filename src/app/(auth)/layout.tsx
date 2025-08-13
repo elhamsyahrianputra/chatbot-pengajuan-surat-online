@@ -1,7 +1,13 @@
 import "@/scss/admin.scss";
 import { publicSans } from "@/ui/fonts";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+    title: "Login - Akademik FKIP UNS",
+    description: "Akademik FKIP UNS",
+};
 
 export default function RootLayout({
     children,
