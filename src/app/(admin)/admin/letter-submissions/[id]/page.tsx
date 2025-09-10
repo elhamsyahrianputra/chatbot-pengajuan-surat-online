@@ -18,7 +18,7 @@ export default function Page() {
         role: "",
         email: "",
         name: "",
-    });
+    } as UserResponse);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
