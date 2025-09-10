@@ -40,15 +40,15 @@ export default function Page() {
     return (
         <>
             <Breadcrumbs
-                title="Pengajuan Surat"
+                title="Manajemen Kasus"
                 breadcrumbs={[
                     {
                         label: "Admin",
                         href: "/admin",
                     },
                     {
-                        label: "Pengajuan Surat",
-                        href: "/admin/letter-submissions",
+                        label: "Manajemen Kasus",
+                        href: "/admin/cases",
                     },
                     {
                         label: "Detail",

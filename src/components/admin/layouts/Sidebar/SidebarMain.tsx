@@ -36,9 +36,9 @@ export default function SidebarMain() {
                             <SidebarSection title="Chatbot">
                                 <SidebarItem title="Manajemen Kasus (Case)" icon="chat" href="/admin/cases" />
                             </SidebarSection>
-                            <SidebarSection title="User Management">
+                            {/* <SidebarSection title="User Management">
                                 <SidebarItem title="User" icon="user" href="/admin/users" />
-                            </SidebarSection>
+                            </SidebarSection> */}
                         </>
                     ) : (
                         <>

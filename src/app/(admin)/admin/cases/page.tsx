@@ -75,14 +75,14 @@ export default function Page() {
     return (
         <>
             <Breadcrumbs
-                title="Jenis Surat"
+                title="Manajemen Kasus"
                 breadcrumbs={[
                     {
                         label: "Dashboard",
                         href: "/admin",
                     },
                     {
-                        label: "Pengajuan Surat",
+                        label: "Manajemen Kasus",
                         href: "/admin/letter-types",
                     },
                 ]}

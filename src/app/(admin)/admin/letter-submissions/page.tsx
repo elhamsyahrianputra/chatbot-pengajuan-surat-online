@@ -36,12 +36,7 @@ type TabFilter = "all" | "submitted" | "approved" | "revision" | "rejected" | "c
 export default function Page() {
     const [letterSubmissions, setLetterSubmissions] = useState<LetterSubmission[]>([]);
     const [activeTab, setActiveTab] = useState<TabFilter>("all");
-    const [user, setUser] = useState<UserResponse>({
-        id: "",
-        role: "",
-        email: "",
-        name: "",
-    });
+    const [user, setUser] = useState<UserResponse>({} as UserResponse);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -89,7 +84,7 @@ export default function Page() {
     return (
         <>
             <Breadcrumbs
-                title="Jenis Surat"
+                title="Pengajuan Surat"
                 breadcrumbs={[
                     {
                         label: "Dashboard",

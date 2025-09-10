@@ -31,6 +31,7 @@ export default function Page() {
 
                 setUser(user);
                 setLetterType(letterType);
+                console.log(user);
             } catch (error) {
                 console.error("Gagal mengambil data:", error);
             } finally {
@@ -147,12 +148,12 @@ export default function Page() {
                                     <FormControl placeholder="Nama" label="Nama" value={user.name} disabled />
                                 </div>
                                 <div className="col">
-                                    <FormControl placeholder="NIM" label="NIM" value={user.profile?.identity_number} disabled />
+                                    <FormControl placeholder="NIM" label="NIM" value={user.identity_number} disabled />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col">
-                                    <FormControl placeholder="No. Telepon" label="No. Telepon" value={user.profile?.phone} disabled />
+                                    <FormControl placeholder="No. Telepon" label="No. Telepon" value={user.phone} disabled />
                                 </div>
                                 <div className="col">
                                     <FormControl placeholder="Email" label="Email" value={user.email} disabled />
@@ -160,7 +161,7 @@ export default function Page() {
                             </div>
                             <div className="row">
                                 <div className="col">
-                                    <FormControl placeholder="Program Studi" label="Program Studi" value={user.profile?.academic_program} disabled />
+                                    <FormControl placeholder="Program Studi" label="Program Studi" value={user.academic_program} disabled />
                                 </div>
                             </div>
                             <div className="row">

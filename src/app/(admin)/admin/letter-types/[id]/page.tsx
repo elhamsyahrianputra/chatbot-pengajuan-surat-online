@@ -114,7 +114,7 @@ export default function Page() {
 
     return (
         <>
-            <Breadcrumbs title="Jenis Surat" breadcrumbs={[{ label: "Dashboard", href: "/admin" }, { label: "Pengajuan Surat", href: "/admin/letter-types" }, { label: breadcrumbValue }]} />
+            <Breadcrumbs title="Jenis Surat" breadcrumbs={[{ label: "Dashboard", href: "/admin" }, { label: "Jenis Surat", href: "/admin/letter-types" }, { label: breadcrumbValue }]} />
 
             <main style={{ paddingTop: "100px" }}>
                 <Card>

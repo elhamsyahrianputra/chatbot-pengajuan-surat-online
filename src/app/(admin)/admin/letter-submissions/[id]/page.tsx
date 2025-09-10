@@ -73,7 +73,7 @@ export default function Page() {
                         href: "/admin/letter-submissions",
                     },
                     {
-                        label: "Detail",
+                        label: letterSubmission.code,
                     },
                 ]}
             />

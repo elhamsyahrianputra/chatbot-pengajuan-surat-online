@@ -30,7 +30,7 @@ export default function Page() {
                         href: "/admin",
                     },
                     {
-                        label: "Pengajuan Surat",
+                        label: "Jenis Surat",
                         href: "/admin/letter-types",
                     },
                 ]}
