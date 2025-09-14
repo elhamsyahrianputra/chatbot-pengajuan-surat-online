@@ -234,7 +234,7 @@ const searchCaseRecords = new DynamicTool({
             caseRecords.forEach((record: Case) => {
                 let currentScore = 0;
                 keywords.forEach((keyword) => {
-                    if (record.keywords.toLowerCase().includes(keyword.toLowerCase())) {
+                    if (record.keywords?.toLowerCase().includes(keyword.toLowerCase())) {
                         currentScore++;
                     }
                 });

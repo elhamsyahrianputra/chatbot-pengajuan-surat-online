@@ -67,7 +67,7 @@ export default function Page() {
                                             <FormControl
                                                 name="keyword"
                                                 label="Keyword"
-                                                value={cased.keywords}
+                                                value={cased.keywords ?? ""}
                                                 onChange={(e) => {
                                                     setCased((prev) => ({ ...prev, keywords: e.target.value }));
                                                 }}
@@ -109,7 +109,7 @@ export default function Page() {
                                         <TextAreaControl
                                             name="solution"
                                             label="Solusi"
-                                            value={cased.solution}
+                                            value={cased.solution ?? ""}
                                             onChange={(e) => {
                                                 setCased((prev) => ({ ...prev, problem: e.target.value }));
                                             }}
