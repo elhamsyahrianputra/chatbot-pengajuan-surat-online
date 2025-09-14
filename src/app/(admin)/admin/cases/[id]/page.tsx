@@ -77,7 +77,7 @@ export default function Page() {
                                             <FormControl
                                                 name="frequency"
                                                 label="Sukses"
-                                                value={cased.frequency}
+                                                value={cased.feedback?.filter((item) => item.type === "like").length}
                                                 onChange={(e) => {
                                                     setCased((prev) => ({ ...prev, frequency: Number(e.target.value) }));
                                                 }}
@@ -136,24 +136,16 @@ export default function Page() {
                                 <li>
                                     <div className="card">
                                         <div className="flex justify-content-between">
-                                            <span>Unrelevant</span>
-                                            <Badge color="blue">{cased.feedback?.filter((item) => item.type === "not_relevant").length}</Badge>
+                                            <span>Membantu</span>
+                                            <Badge color="green">{cased.feedback?.filter((item) => item.type === "like").length}</Badge>
                                         </div>
                                     </div>
                                 </li>
                                 <li className="mt-3">
                                     <div className="card">
                                         <div className="flex justify-content-between">
-                                            <span>Incomplete</span>
-                                            <Badge color="red">{cased.feedback?.filter((item) => item.type === "incomplete").length}</Badge>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="mt-3">
-                                    <div className="card">
-                                        <div className="flex justify-content-between">
-                                            <span>Different Situation</span>
-                                            <Badge color="purple">{cased.feedback?.filter((item) => item.type === "different_situation").length}</Badge>
+                                            <span>Tidak Membantu</span>
+                                            <Badge color="red">{cased.feedback?.filter((item) => item.type === "dislike").length}</Badge>
                                         </div>
                                     </div>
                                 </li>

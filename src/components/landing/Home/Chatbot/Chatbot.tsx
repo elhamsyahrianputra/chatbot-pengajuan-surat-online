@@ -151,14 +151,21 @@ export default function Chatbot() {
 
 Kira-kira, kakak mau aku bantu yang mana dulu nih?😊`}
                     role="assistant"
+                    problem=""
                 />
             </li>
-            {history.map((item, index) => (
-                <li key={index} className="dialog-item">
-                    <ChatbotMessage message={item.message} role={item.role} />
-                    {/* {item.role == "assistant" && <FeedbackOption />} */}
-                </li>
-            ))}
+            {history.map((item, index) => {
+                const lastUserQuery =
+                    history
+                        .slice(0, index)
+                        .reverse()
+                        .find((h) => h.role === "user")?.message || "";
+                return (
+                    <li key={index} className="dialog-item">
+                        <ChatbotMessage message={item.message} role={item.role} problem={lastUserQuery} />
+                    </li>
+                );
+            })}
             {isMessageLoading && (
                 <li className="dialog-item">
                     <ChatbotMessageLoading />

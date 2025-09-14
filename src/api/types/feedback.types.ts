@@ -2,5 +2,11 @@ export interface Feedback {
     id: string;
     case_record_id: string;
     user_id: string;
-    type: 'not_relevant' | 'incomplete' | 'different_situation';
+    type: "like" | "dislike";
+}
+
+export interface StoreFeedbackRequest {
+    case_record_id: string;
+    user_id: string;
+    type: "like" | "dislike";
 }

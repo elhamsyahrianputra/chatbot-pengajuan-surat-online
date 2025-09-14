@@ -3,7 +3,7 @@ interface TextAreaControlProps {
     label?: string;
     placeholder?: string;
     onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
-    value?: string;
+    value?: string | null;
     type?: string;
     disabled?: boolean;
     accept?: string;

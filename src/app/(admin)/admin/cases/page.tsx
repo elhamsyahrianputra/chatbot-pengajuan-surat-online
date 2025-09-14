@@ -125,7 +125,7 @@ export default function Page() {
                             <td>Problem</td>
                             <td>Status</td>
                             <td>Tingkat Kepercayaan</td>
-                            <td>Sukses</td>
+                            <td>Frekuensi</td>
                             <td>Skor Performa</td>
                             <td></td>
                         </>
@@ -138,9 +138,11 @@ export default function Page() {
                             <td>
                                 <Badge color={item.status === "verified" ? "green" : item.status === "unverified" ? "red" : "grey"}>{item.status}</Badge>
                             </td>
-                            <td>{item.confidence_score}</td>
+                            <td>{!item.confidence_score && <Badge color="grey">null</Badge>}</td>
                             <td>{item.frequency}</td>
-                            <td>{`${item.feedback?.length ? ((item.frequency / (item.frequency + item.feedback.length)) * 100).toFixed(1) : "0.0"}%`}</td>
+                            {/* <td>{`${item.feedback?.length ? ((item.frequency / (item.frequency + item.feedback.length)) * 100).toFixed(1) : "0.0"}%`}</td> */}
+                            <td>{`${item.feedback?.length ? ((item.feedback.filter((fb) => fb.type === "like").length / item.feedback.length) * 100).toFixed(1) : "0.0"}%`}</td>
+
                             <td>
                                 <ActionList href={`/admin/cases/${item.id}`}>
                                     <ActionItem icon="trash" onSubmit={() => {}}>
