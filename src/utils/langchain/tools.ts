@@ -194,7 +194,8 @@ const searchCaseRecords = new DynamicTool({
                 content = content.replace(/```json|```/g, "").replace(/\n/g, "");
 
                 // Langkah 2: Sekarang string sudah satu baris, regex sederhana bisa digunakan
-                const jsonMatch = content.match(/(\[.*\])/); // Tanpa flag 's'
+                // Cari potongan string yang berbentuk array JSON (diawali '[' dan diakhiri ']')
+                const jsonMatch = content.match(/(\[.*\])/);
 
                 if (jsonMatch && jsonMatch[0]) {
                     // Jika ditemukan, parse bagian itu saja
